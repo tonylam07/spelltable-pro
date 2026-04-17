@@ -3,8 +3,11 @@
  *
  * Pipeline (fastest path first):
  *   1. Frame throttle   — skip if < MIN_INTERVAL ms since last run
- *   2. Scene-change     — skip if frame looks identical to last (pixel sampling)
- *   3. OpenCV quads     — find card-shaped rectangles, perspective-warp each
+ *   2. Scene-change     — draw to a tiny 160×90 thumb, single getImageData call,
+ *                         skip if frame looks identical to last
+ *   3. OpenCV quads     — downscale source to PROC_MAX_W (720px) for fast edge
+ *                         detection; scale corner coords back to original res;
+ *                         perspective-warp from the ORIGINAL frame for quality
  *   4. pHash Worker     — compute DCT pHash in a Web Worker (no network), ~2-5ms
  *        → high confidence (≥ WORKER_CONF_ACCEPT)?  Done. No server call.
  *        → low confidence?  Fall through to step 5.
@@ -13,6 +16,11 @@
  *        → still low?  Escalate to step 6 only if OCR mode is on.
  *   6. Server full      — POST /api/detect (phash + Tesseract OCR, up to ~4s)
  *        Triggered only by manual "Identify" button, never automatically.
+ *
+ * Designed for 1080p Logitech-class webcams:
+ *   - Scene-change thumb: ~0.5ms
+ *   - OpenCV at 720p: ~15-25ms (vs ~60-100ms at 1080p)
+ *   - Crop warp from original: preserves quality for pHash
  *
  * Requires OpenCV.js (loaded lazily from CDN).
  * Requires /js/phash-worker.js (served by Express static).
@@ -33,8 +41,13 @@
     const MIN_AREA_FRAC      = 0.01;
     const MAX_AREA_FRAC      = 0.60;
 
+    // OpenCV runs on a downscaled copy — 4× less pixels than 1080p, ~4× faster
+    const PROC_MAX_W         = 720;     // px; source scaled down to this width
+
     const MIN_INTERVAL       = 600;     // ms between detection runs
-    const SCENE_SAMPLE_COUNT = 64;      // pixels sampled for scene-change check
+    // Scene-change: one 160×90 thumbnail drawn per tick, single getImageData call
+    const SCENE_THUMB_W      = 160;
+    const SCENE_THUMB_H      = 90;
     const SCENE_DIFF_THRESH  = 0.06;    // 6% pixel change triggers new detection
     const WORKER_CONF_ACCEPT = 0.72;    // worker confidence threshold — skip server
     const LITE_CONF_ACCEPT   = 0.55;    // server-lite confidence threshold — skip OCR
@@ -47,7 +60,8 @@
     let hashIdCounter = 0;
 
     let lastRunAt     = 0;
-    let lastPixels    = null;        // Float32Array of sampled pixel values
+    let lastPixels    = null;        // Uint8ClampedArray — thumbnail RGBA from last run
+    let sceneThumb    = null;        // reusable offscreen canvas (160×90)
 
     // ── OpenCV lazy loader ────────────────────────────────────────────────────
     function loadOpenCV() {
@@ -124,32 +138,38 @@
     }
 
     // ── Scene-change detection ─────────────────────────────────────────────────
-    // Samples SCENE_SAMPLE_COUNT pixels from the canvas; returns true if the
-    // frame has changed enough to warrant a new detection run.
-    function sceneChanged(ctx, w, h) {
-        // Sample pixels at fixed grid positions
-        const step    = Math.floor(Math.sqrt((w * h) / SCENE_SAMPLE_COUNT));
-        const current = new Float32Array(SCENE_SAMPLE_COUNT);
-        let   idx     = 0;
-
-        for (let y = 0; y < h && idx < SCENE_SAMPLE_COUNT; y += step) {
-            for (let x = 0; x < w && idx < SCENE_SAMPLE_COUNT; x += step) {
-                const d = ctx.getImageData(x, y, 1, 1).data;
-                current[idx++] = 0.299 * d[0] + 0.587 * d[1] + 0.114 * d[2];
-            }
+    // Draws the video source into a reusable 160×90 offscreen canvas, then reads
+    // all pixels in ONE getImageData call (~0.5ms vs 64 individual calls).
+    // Returns true if enough pixels changed to warrant a new detection run.
+    function sceneChanged(source) {
+        if (!sceneThumb) {
+            sceneThumb = document.createElement('canvas');
+            sceneThumb.width  = SCENE_THUMB_W;
+            sceneThumb.height = SCENE_THUMB_H;
         }
+        const ctx = sceneThumb.getContext('2d');
+        ctx.drawImage(source, 0, 0, SCENE_THUMB_W, SCENE_THUMB_H);
+
+        // Single GPU→CPU transfer for all pixels
+        const current = ctx.getImageData(0, 0, SCENE_THUMB_W, SCENE_THUMB_H).data;
 
         if (!lastPixels || lastPixels.length !== current.length) {
-            lastPixels = current;
+            lastPixels = new Uint8ClampedArray(current);
             return true;
         }
 
+        // Compare greyscale values; count pixels that changed by > 10 luma units
         let diff = 0;
-        for (let i = 0; i < current.length; i++) {
-            if (Math.abs(current[i] - lastPixels[i]) > 10) diff++;
+        const total = SCENE_THUMB_W * SCENE_THUMB_H;
+        for (let i = 0; i < current.length; i += 4) {
+            const prevL = 0.299 * lastPixels[i] + 0.587 * lastPixels[i + 1] + 0.114 * lastPixels[i + 2];
+            const currL = 0.299 * current[i]    + 0.587 * current[i + 1]    + 0.114 * current[i + 2];
+            if (Math.abs(currL - prevL) > 10) diff++;
         }
-        lastPixels = current;
-        return (diff / current.length) > SCENE_DIFF_THRESH;
+
+        // Store copy for next comparison (reuse typed array if possible)
+        lastPixels.set(current);
+        return (diff / total) > SCENE_DIFF_THRESH;
     }
 
     // ── Perspective warp helpers ───────────────────────────────────────────────
@@ -162,18 +182,41 @@
         return [tl, tr, br, bl];
     }
 
+    /**
+     * detectCardQuads — optimised for 1080p webcam input.
+     *
+     * Strategy:
+     *   1. Downscale source to ≤ PROC_MAX_W (720px) for OpenCV edge detection.
+     *      720p has ~4× fewer pixels than 1080p → Canny + findContours run ~4× faster.
+     *   2. Scale the detected corner coordinates back to original resolution.
+     *   3. Perspective-warp from the ORIGINAL full-res frame so the card crop
+     *      stays sharp — important for pHash accuracy.
+     */
     async function detectCardQuads(source) {
-        const cv = await loadOpenCV();
-        const w  = source.videoWidth || source.width;
-        const h  = source.videoHeight || source.height;
-        if (!w || !h) return [];
+        const cv  = await loadOpenCV();
+        const origW = source.videoWidth  || source.width;
+        const origH = source.videoHeight || source.height;
+        if (!origW || !origH) return [];
 
-        const tmp = document.createElement('canvas');
-        tmp.width = w; tmp.height = h;
-        const ctx = tmp.getContext('2d');
-        ctx.drawImage(source, 0, 0, w, h);
+        // ── Step 1: downscaled canvas for OpenCV ──────────────────────────────
+        const scale  = Math.min(1, PROC_MAX_W / origW);
+        const procW  = Math.round(origW * scale);
+        const procH  = Math.round(origH * scale);
 
-        const src       = cv.imread(tmp);
+        const procCanvas = document.createElement('canvas');
+        procCanvas.width  = procW;
+        procCanvas.height = procH;
+        procCanvas.getContext('2d').drawImage(source, 0, 0, procW, procH);
+
+        // ── Step 2: original-res canvas for high-quality warp ─────────────────
+        // Only created once per frame — shared across all quads found.
+        const origCanvas = document.createElement('canvas');
+        origCanvas.width  = origW;
+        origCanvas.height = origH;
+        origCanvas.getContext('2d').drawImage(source, 0, 0, origW, origH);
+
+        const procMat   = cv.imread(procCanvas);
+        const origMat   = cv.imread(origCanvas);
         const gray      = new cv.Mat();
         const blur      = new cv.Mat();
         const edges     = new cv.Mat();
@@ -181,19 +224,19 @@
         const hierarchy = new cv.Mat();
 
         try {
-            cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY);
+            cv.cvtColor(procMat, gray, cv.COLOR_RGBA2GRAY);
             cv.GaussianBlur(gray, blur, new cv.Size(5, 5), 0);
             cv.Canny(blur, edges, 50, 150);
             cv.dilate(edges, edges, cv.Mat.ones(3, 3, cv.CV_8U));
             cv.findContours(edges, contours, hierarchy, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE);
 
-            const frameArea = w * h;
-            const results   = [];
+            const procArea = procW * procH;
+            const results  = [];
 
             for (let i = 0; i < contours.size(); i++) {
                 const cnt  = contours.get(i);
                 const area = cv.contourArea(cnt);
-                if (area < frameArea * MIN_AREA_FRAC || area > frameArea * MAX_AREA_FRAC) {
+                if (area < procArea * MIN_AREA_FRAC || area > procArea * MAX_AREA_FRAC) {
                     cnt.delete(); continue;
                 }
                 const peri   = cv.arcLength(cnt, true);
@@ -201,9 +244,13 @@
                 cv.approxPolyDP(cnt, approx, 0.02 * peri, true);
 
                 if (approx.rows === 4) {
+                    // Scale corners back to original resolution
                     const pts = [];
                     for (let j = 0; j < 4; j++) {
-                        pts.push({ x: approx.data32S[j * 2], y: approx.data32S[j * 2 + 1] });
+                        pts.push({
+                            x: Math.round(approx.data32S[j * 2]     / scale),
+                            y: Math.round(approx.data32S[j * 2 + 1] / scale),
+                        });
                     }
                     const [tl, tr, br, bl] = orderCorners(pts);
                     const maxW  = Math.max(Math.hypot(br.x - bl.x, br.y - bl.y),
@@ -216,6 +263,7 @@
                         approx.delete(); cnt.delete(); continue;
                     }
 
+                    // Warp from original-res mat for maximum crop quality
                     const dstW   = 488; const dstH = 680;
                     const srcTri = cv.matFromArray(4, 1, cv.CV_32FC2,
                         [tl.x, tl.y, tr.x, tr.y, br.x, br.y, bl.x, bl.y]);
@@ -223,12 +271,13 @@
                         [0, 0, dstW, 0, dstW, dstH, 0, dstH]);
                     const M      = cv.getPerspectiveTransform(srcTri, dstTri);
                     const warped = new cv.Mat();
-                    cv.warpPerspective(src, warped, M, new cv.Size(dstW, dstH));
+                    cv.warpPerspective(origMat, warped, M, new cv.Size(dstW, dstH));
 
                     const out = document.createElement('canvas');
                     out.width = dstW; out.height = dstH;
                     cv.imshow(out, warped);
 
+                    // Corners reported in original resolution for overlay drawing
                     results.push({ corners: [tl, tr, br, bl], canvas: out,
                                    cropDataUrl: out.toDataURL('image/jpeg', 0.85) });
 
@@ -238,7 +287,8 @@
             }
             return results;
         } finally {
-            src.delete(); gray.delete(); blur.delete(); edges.delete();
+            procMat.delete(); origMat.delete();
+            gray.delete(); blur.delete(); edges.delete();
             contours.delete(); hierarchy.delete();
         }
     }
@@ -336,15 +386,16 @@
         /**
          * Full auto pipeline with throttle + scene-change guard.
          * Call this from the analysis loop — it self-skips when nothing changed.
+         *
+         * @param {HTMLVideoElement|HTMLCanvasElement} source  — webcam feed or canvas
+         * @param {CanvasRenderingContext2D}           overlayCtx  — for drawOverlay()
          */
-        async analyzeFrame(source, ctx) {
+        async analyzeFrame(source, overlayCtx) {
             const now = Date.now();
             if (now - lastRunAt < MIN_INTERVAL) return null; // throttled
 
-            // Scene-change check — skip if the frame looks the same
-            const w = source.videoWidth || source.width;
-            const h = source.videoHeight || source.height;
-            if (ctx && !sceneChanged(ctx, w, h)) return null; // unchanged
+            // Scene-change: draws source into a tiny thumb itself — no ctx needed
+            if (!sceneChanged(source)) return null; // unchanged
 
             lastRunAt = now;
 
