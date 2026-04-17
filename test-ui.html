@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SpellTable Pro+ - Test UI</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .test-status {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #2d5a27;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+        .test-status h2 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.2rem;
+        }
+        .status-item {
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        .status-item.ok { color: #4ade80; }
+        .status-item.err { color: #f87171; }
+        .test-info {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .test-info h1 {
+            color: #667eea;
+            font-family: 'Cormorant Garamond', serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-status">
+        <h2>🎮 Test Panel</h2>
+        <div id="socket-status" class="status-item">⏳ Checking Socket.io...</div>
+        <div id="api-status" class="status-item">⏳ Checking API...</div>
+        <div id="ui-status" class="status-item">⏳ Checking UI...</div>
+    </div>
+
+    <div class="test-info">
+        <h1>SpellTable Pro+ - Phase 4 Test</h1>
+        <p>This page tests all the new features implemented in Phase 4:</p>
+        <ul style="line-height: 2;">
+            <li>✅ Socket.io Client (for real-time sync)</li>
+            <li>✅ Game Lobby UI</li>
+            <li>✅ Round Table Layout</li>
+            <li>✅ Card Hover Animations</li>
+            <li>✅ Active Player Highlight</li>
+        </ul>
+    </div>
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="js/game-sync.js"></script>
+    <script>
+        const testResults = {
+            socket: null,
+            api: null,
+            ui: null
+        };
+
+        async function runTests() {
+            // Test 1: Socket.io connection
+            const socketStatus = document.getElementById('socket-status');
+            try {
+                const socket = io(window.location.origin);
+                socket.on('connect', () => {
+                    testResults.socket = true;
+                    socketStatus.innerHTML = '✅ Socket.io connected!';
+                    socketStatus.className = 'status-item ok';
+                });
+                socket.on('connect_error', (err) => {
+                    testResults.socket = false;
+                    socketStatus.innerHTML = `❌ Socket.io error: ${err.message}`;
+                    socketStatus.className = 'status-item err';
+                });
+                setTimeout(() => {
+                    if (!testResults.socket) {
+                        socketStatus.innerHTML = '❌ Socket.io timeout';
+                        socketStatus.className = 'status-item err';
+                    }
+                }, 3000);
+            } catch (e) {
+                testResults.socket = false;
+                socketStatus.innerHTML = '❌ Socket.io not loaded';
+                socketStatus.className = 'status-item err';
+            }
+
+            // Test 2: API endpoint
+            const apiStatus = document.getElementById('api-status');
+            try {
+                const res = await fetch('/api/health');
+                const data = await res.json();
+                if (data.status === 'ok') {
+                    testResults.api = true;
+                    apiStatus.innerHTML = `✅ API responding: ${data.version}`;
+                    apiStatus.className = 'status-item ok';
+                } else {
+                    throw new Error('API returned non-OK status');
+                }
+            } catch (e) {
+                testResults.api = false;
+                apiStatus.innerHTML = `❌ API error: ${e.message}`;
+                apiStatus.className = 'status-item err';
+            }
+
+            // Test 3: UI elements
+            const uiStatus = document.getElementById('ui-status');
+            const lobbyView = document.getElementById('lobby-view');
+            const playTable = document.getElementById('play-table');
+
+            if (lobbyView && playTable) {
+                testResults.ui = true;
+                uiStatus.innerHTML = '✅ All UI elements present';
+                uiStatus.className = 'status-item ok';
+            } else {
+                testResults.ui = false;
+                uiStatus.innerHTML = '❌ Missing UI elements';
+                uiStatus.className = 'status-item err';
+            }
+
+            // Try to load game-sync and check for errors
+            console.log('Test Results:', testResults);
+        }
+
+        // Run tests after page load
+        window.addEventListener('load', runTests);
+    </script>
+</body>
+</html>

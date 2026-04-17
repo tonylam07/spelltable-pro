@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpellTable Pro+ - Modern TCG Play Table</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dark-theme.css" id="theme-style">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/ai-fixes.css">
+    <link rel="stylesheet" href="css/play-table.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        // Split-deploy: point detection at the Railway host in production.
+        // Leave unset (or keep '/api/detect') when running everything locally.
+        // window.__DETECT_API_URL__ = 'https://spelltable-detect.up.railway.app/api/detect';
+    </script>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="light-theme">
+    <!-- Header -->
+    <header class="app-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">🎮</span>
+                    <h1>SpellTable Pro+</h1>
+                </div>
+                <nav class="main-nav">
+                    <a href="#play" class="nav-link active">Play</a>
+                    <a href="browse.html" class="nav-link">Browse</a>
+                    <a href="social.html" class="nav-link">Social</a>
+                    <a href="#video" class="nav-link">Video</a>
+                    <a href="#ai" class="nav-link">AI Analysis</a>
+                    <a href="#settings" class="nav-link">Settings</a>
+                </nav>
+                <div class="header-actions">
+                    <div id="user-profile" class="user-profile hidden">
+                        <span id="user-display-name">Player</span>
+                        <button id="logout-btn" class="btn btn-sm btn-secondary">Logout</button>
+                    </div>
+                    <a href="#" id="login-link" class="btn btn-sm btn-secondary">Login</a>
+                    <button id="theme-toggle" class="btn btn-icon" title="Toggle Theme">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                    <button id="fullscreen" class="btn btn-primary" title="Fullscreen">
+                        🖥️
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="app-main">
+        <div class="container">
+            <!-- Lobby View -->
+            <section id="lobby-view" class="lobby-section hidden">
+                <div class="lobby-card">
+                    <div class="lobby-header">
+                        <h2>🎮 Game Lobby</h2>
+                        <div id="lobby-status" class="status-badge ready">Waiting for players...</div>
+                    </div>
+                    <div class="lobby-body">
+                        <div class="lobby-players">
+                            <h4>Joined Players</h4>
+                            <ul id="lobby-player-list">
+                                <!-- Players added dynamically -->
+                            </ul>
+                        </div>
+                        <div class="lobby-settings">
+                            <h4>Game Settings</h4>
+                            <div class="setting-item">
+                                <label>Game Mode:</label>
+                                <select id="lobby-game-mode">
+                                    <option value="casual">Casual</option>
+                                    <option value="tournament">Tournament</option>
+                                    <option value="ranked">Ranked</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lobby-footer">
+                        <button id="start-game-btn" class="btn btn-primary btn-lg hidden">Start Game</button>
+                        <p id="lobby-hint">Waiting for host to start the game...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Player Setup Bar -->
+            <section class="player-setup">
+                <div class="player-setup-bar">
+                    <label for="player-count">Players:</label>
+                    <select id="player-count" class="player-count-select">
+                        <option value="2">2 Players</option>
+                        <option value="3">3 Players</option>
+                        <option value="4" selected>4 Players</option>
+                        <option value="5">5 Players</option>
+                        <option value="6">6 Players</option>
+                    </select>
+                    <div class="turn-counter">
+                        <label>Turn:</label>
+                        <span id="turn-display">1</span>
+                        <button class="btn btn-sm" id="next-turn">Next →</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Video Section -->
+            <section id="video" class="video-section">
+                <div class="section-header">
+                    <h2>📹 Remote Video Session</h2>
+                    <div class="session-info">
+                        <span class="status-badge online">🟢 Online</span>
+                        <span class="session-id">Session: #2847</span>
+                    </div>
+                </div>
+                <div id="video-grid" class="video-grid" data-players="4">
+                    <!-- Video containers are rendered dynamically by app.js -->
+                </div>
+            </section>
+
+            <!-- Play Table Section -->
+            <section id="play" class="play-section">
+                <div class="section-header">
+                    <h2>🎮 Play Table</h2>
+                </div>
+
+                <!-- Life totals bar for all players -->
+                <div id="life-totals-bar" class="life-totals-bar">
+                    <!-- Life total widgets rendered dynamically by app.js -->
+                </div>
+
+                <div id="play-table" class="play-table" data-players="4">
+                    <!-- Player board areas rendered dynamically by app.js -->
+                </div>
+            </section>
+
+            <!-- AI Analysis Section -->
+            <section id="ai" class="ai-section">
+                <div class="section-header">
+                    <h2>🤖 AI Card Detection & Analysis</h2>
+                    <div class="ai-status">
+                        <span class="status-badge ready">🟢 Ready</span>
+                        <button class="btn btn-sm" id="start-ai">Start Detection</button>
+                    </div>
+                </div>
+                <div class="ai-content">
+                    <div class="ai-preview">
+                        <div class="preview-placeholder">
+                            <span class="preview-icon">🔍</span>
+                            <h4>AI Detection Preview</h4>
+                            <p>Camera feed will appear here when AI detection is active</p>
+                        </div>
+                    </div>
+                    <div class="ai-results">
+                        <h4>Detection Results</h4>
+                        <div id="ai-detection-results" class="detection-list">
+                            <div class="detection-item">
+                                <span class="detection-icon">🎯</span>
+                                <span class="detection-text">Card detected: <strong>No cards detected yet</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ai-analysis">
+                        <h4>Game State Analysis</h4>
+                        <div id="ai-analysis-content" class="analysis-content">
+                            <div class="analysis-item">
+                                <span class="analysis-label">Hand Count:</span>
+                                <span class="analysis-value">0 cards</span>
+                            </div>
+                            <div class="analysis-item">
+                                <span class="analysis-label">Board State:</span>
+                                <span class="analysis-value">Empty</span>
+                            </div>
+                            <div class="analysis-item">
+                                <span class="analysis-label">Recommended Play:</span>
+                                <span class="analysis-value">None available</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>⚙️ Settings</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <h4>Theme</h4>
+                    <div class="theme-options">
+                        <button class="theme-btn active" data-theme="light">🌙 Light Mode</button>
+                        <button class="theme-btn" data-theme="dark">🌙 Dark Mode</button>
+                        <button class="theme-btn" data-theme="custom">🎨 Custom Theme</button>
+                    </div>
+                </div>
+                <div class="setting-group">
+                    <h4>Keyboard Shortcuts</h4>
+                    <div class="shortcut-list">
+                        <div class="shortcut-item">
+                            <span class="shortcut-label">Toggle Theme</span>
+                            <kbd>Ctrl+T</kbd>
+                        </div>
+                        <div class="shortcut-item">
+                            <span class="shortcut-label">Fullscreen</span>
+                            <kbd>F11</kbd>
+                        </div>
+                        <div class="shortcut-item">
+                            <span class="shortcut-label">Next Turn</span>
+                            <kbd>Space</kbd>
+                        </div>
+                        <div class="shortcut-item">
+                            <span class="shortcut-label">Add Life</span>
+                            <kbd>+</kbd>
+                        </div>
+                        <div class="shortcut-item">
+                            <span class="shortcut-label">Sub Life</span>
+                            <kbd>-</kbd>
+                        </div>
+                    </div>
+                </div>
+                <div class="setting-group">
+                    <h4>Session Settings</h4>
+                    <div class="session-settings">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="auto-save" checked>
+                            <span>Auto-save game state</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="enable-notifications">
+                            <span>Enable notifications</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="enable-sync">
+                            <span>Enable real-time sync</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="save-settings">Save Settings</button>
+                <button class="btn btn-secondary" id="cancel-settings">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="js/app.js"></script>
+    <script src="js/video.js"></script>
+    <script src="js/cards.js"></script>
+    <script src="js/card-detection-hybrid.js"></script>
+    <script src="js/ai-detection.js"></script>
+    <script src="js/game-sync.js"></script>
+    <script src="js/card-detection-enhanced.js"></script>
+    <script src="js/card-database.js"></script>
+
+    <!-- Welcome Overlay -->
+    <div id="welcome-overlay" class="welcome-overlay">
+        <div class="welcome-content">
+            <span class="welcome-icon">🎮</span>
+            <h1>SpellTable Pro+</h1>
+            <p>Modern, AI-powered play table for Magic: The Gathering.</p>
+            <button id="welcome-start" class="btn btn-primary btn-lg"
+                    onclick="document.getElementById('welcome-overlay').classList.add('hidden')">
+                Get Started
+            </button>
+        </div>
+    </div>
+
+    <!-- Auth Modals -->
+    <div id="auth-section" class="modal">
+        <div class="modal-content auth-modal">
+            <div class="modal-header">
+                <h3 id="auth-title">Login</h3>
+                <button class="modal-close" id="close-auth">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                    <p class="form-footer">
+                        Don't have an account? <a href="#" id="show-register">Register here</a>
+                    </p>
+                </form>
+                <form id="register-form" class="hidden">
+                    <div class="form-group">
+                        <label for="reg-display-name">Display Name</label>
+                        <input type="text" id="reg-display-name" name="displayName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-email">Email</label>
+                        <input type="email" id="reg-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-password">Password</label>
+                        <input type="password" id="reg-password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+                    <p class="form-footer">
+                        Already have an account? <a href="#" id="show-login">Login here</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Inline script removed: welcome overlay and keyboard shortcuts are handled by app.js -->
+</body>
+</html>

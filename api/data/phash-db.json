@@ -1,0 +1,1602 @@
+{
+  "00002ff83ff07ff0fe60ee60f805f805f83f801f00007ffe5ffe5ffe007c0000": {
+    "name": "Farewell",
+    "set": "neo",
+    "scryfall_id": "0050b693-7bad-4c0c-baca-0186d153ce2e",
+    "type_line": "Sorcery",
+    "mana_cost": "{4}{W}{W}",
+    "cmc": 6
+  },
+  "7ffe7ffe0000007043f8c7f14fc14f0000007ffc7f807f987f8c7ffc7f800000": {
+    "name": "Scoured Barrens",
+    "set": "neo",
+    "scryfall_id": "00538414-90f3-41da-b67e-d81cfa643de3",
+    "type_line": "Land",
+    "mana_cost": "",
+    "cmc": 0
+  },
+  "17e07fe007d01fe000800b683efc1fffe9817e025010fffcfff87ffc39800000": {
+    "name": "Boseiju, Who Endures",
+    "set": "neo",
+    "scryfall_id": "0055ea30-20fb-4324-a632-8fed87628f05",
+    "type_line": "Legendary Land",
+    "mana_cost": "",
+    "cmc": 0
+  },
+  "00000ffe1ff81efc1f3c4e3c037807f8064000007ffe7ffe3ffe3ffe06680000": {
+    "name": "Thousand-Faced Shadow",
+    "set": "neo",
+    "scryfall_id": "00632c03-be00-4722-85b3-2ce31bba5cc6",
+    "type_line": "Creature — Human Ninja",
+    "mana_cost": "{U}",
+    "cmc": 1
+  },
+  "01c00fff099e0fce038406367fb82ff8000e00007ffe7ffe3ffe7ffe00780000": {
+    "name": "Satsuki, the Living Lore",
+    "set": "neo",
+    "scryfall_id": "0152575b-31b0-4142-9cc2-b87a81bd51a8",
+    "type_line": "Legendary Creature — Human Druid",
+    "mana_cost": "{G}{W}",
+    "cmc": 2
+  },
+  "f91f7ffe0f00030007803fc07fa07fe004007ffc76187fa87fe07ff87f060000": {
+    "name": "Jin-Gitaxias, Progress Tyrant",
+    "set": "neo",
+    "scryfall_id": "01985566-275b-4bf0-8667-c81eb95ad70c",
+    "type_line": "Legendary Creature — Phyrexian Praetor",
+    "mana_cost": "{5}{U}{U}",
+    "cmc": 7
+  },
+  "01002e783f7f8f171e631017801ffb8fb180a3ff00007ffe7ffe7ffe0e000000": {
+    "name": "Greasefang, Okiba Boss",
+    "set": "neo",
+    "scryfall_id": "020a4094-e5d8-477b-930f-f7ab98dc9fb1",
+    "type_line": "Legendary Creature — Rat Pilot",
+    "mana_cost": "{1}{W}{B}",
+    "cmc": 3
+  },
+  "03c07ffe3be03860787e487e78721072000003187ffe3ffe7ffe7ffe06400000": {
+    "name": "Reito Sentinel",
+    "set": "neo",
+    "scryfall_id": "0218923a-b685-4492-8fdd-2d2d22ef532e",
+    "type_line": "Artifact Creature — Construct",
+    "mana_cost": "{3}",
+    "cmc": 3
+  },
+  "00003ffe2ff46e3257c2cc3e7436700e000008f87ffe4fde007e0ffe7ffe0000": {
+    "name": "A-Ancestral Katana",
+    "set": "neo",
+    "scryfall_id": "0321b706-87b0-4bea-89d3-ec2e7252dc7c",
+    "type_line": "Artifact — Equipment",
+    "mana_cost": "{1}{W}",
+    "cmc": 2
+  },
+  "10807ffe00f83bdcfd8e7c0e7e04380c000000387ffe7ffe3ffe3ffe38140000": {
+    "name": "A-Futurist Operative",
+    "set": "neo",
+    "scryfall_id": "034c5631-fd61-47cb-88b6-aca036affc1e",
+    "type_line": "Creature — Human Ninja",
+    "mana_cost": "{U}",
+    "cmc": 1
+  },
+  "02007ffe3ffc1c80f8f7feb383218001000000707ffe7ffe7ffe7ffe08180000": {
+    "name": "Mirrorshell Crab",
+    "set": "neo",
+    "scryfall_id": "0394c8df-2e8a-4477-93b7-569934d7b936",
+    "type_line": "Artifact Creature — Crab",
+    "mana_cost": "{5}{U}{U}",
+    "cmc": 7
+  },
+  "0000303e7fce73fe77fe61fe00fe000400000c087ffe7ffe7ffe7ffe002c0000": {
+    "name": "March of Wretched Sorrow",
+    "set": "neo",
+    "scryfall_id": "050a604e-6146-4e2e-88a5-863ecb3dfa1f",
+    "type_line": "Instant",
+    "mana_cost": "{X}{B}",
+    "cmc": 1
+  },
+  "0bfc03fe001e0ff81fe0878003d47fec010001807ffe7ffe2bde2fbe1efc0000": {
+    "name": "Secluded Courtyard",
+    "set": "neo",
+    "scryfall_id": "0539b1a5-8704-476f-ba1f-2fe01190e157",
+    "type_line": "Land",
+    "mana_cost": "",
+    "cmc": 0
+  },
+  "00005dfe7c1e7e2e0b8c0fe613bc09fc000002e07ffe3ffe3bfe7ffe2a0c0000": {
+    "name": "Disruption Protocol",
+    "set": "neo",
+    "scryfall_id": "053ab598-06a4-43ae-b9fd-c291bd05642c",
+    "type_line": "Instant",
+    "mana_cost": "{U}{U}",
+    "cmc": 2
+  },
+  "03007ffe7f1c7a000670196871be739e000003407ffe7ffe7ffe3ffe07800000": {
+    "name": "Boon of Boseiju",
+    "set": "neo",
+    "scryfall_id": "06771591-0480-4232-bc67-216b2e0fe738",
+    "type_line": "Instant",
+    "mana_cost": "{1}{G}",
+    "cmc": 2
+  },
+  "00006be4ddcff51be401f801fa03fe1fbece383800007ffe4bda5fde3e7c0000": {
+    "name": "Invoke Justice",
+    "set": "neo",
+    "scryfall_id": "06a2079f-2a87-428f-aefc-f7c075a35598",
+    "type_line": "Sorcery",
+    "mana_cost": "{1}{W}{W}{W}{W}",
+    "cmc": 5
+  },
+  "03c07ffe7c0874d062e046e61faa173c000001847ffe7ffe7ffe7ffe1c000000": {
+    "name": "Kura, the Boundless Sky",
+    "set": "neo",
+    "scryfall_id": "06b25752-26be-4189-bc8b-828db6f0e612",
+    "type_line": "Legendary Creature — Dragon Spirit",
+    "mana_cost": "{3}{G}{G}",
+    "cmc": 5
+  },
+  "01c006ff07fe04fefc7f801f801f8037000001247ffe7ffe00de3ffe3ffc0000": {
+    "name": "A-Raiyuu, Storm's Edge",
+    "set": "neo",
+    "scryfall_id": "06f5ab0d-3280-42d3-bc7e-abb109bbe3c4",
+    "type_line": "Legendary Creature — Human Samurai",
+    "mana_cost": "{2}{R}{W}",
+    "cmc": 4
+  },
+  "3ff07ffe0380078016e187bc87780f980000010c7ffe7ffe3bfe7ffe00f80000": {
+    "name": "Twinshot Sniper",
+    "set": "neo",
+    "scryfall_id": "08a86009-4637-4b6c-9d36-367151583668",
+    "type_line": "Artifact Creature — Goblin Archer",
+    "mana_cost": "{3}{R}",
+    "cmc": 4
+  },
+  "e18d8041f07f833f9e039e41c25bfa0bfe37b679ec01a001ffe77ffd01840000": {
+    "name": "Kura, the Boundless Sky",
+    "set": "neo",
+    "scryfall_id": "0986e1a1-749d-4f34-9cdf-b347f2041c5c",
+    "type_line": "Legendary Creature — Dragon Spirit",
+    "mana_cost": "{3}{G}{G}",
+    "cmc": 5
+  },
+  "37ec7fff060202069fef9447800f804f000001247ffe7ffe53fe7ffe01f80000": {
+    "name": "Norika Yamazaki, the Poet",
+    "set": "neo",
+    "scryfall_id": "09cb553c-58c1-4cfd-b441-297b5f09b263",
+    "type_line": "Legendary Creature — Human Samurai",
+    "mana_cost": "{2}{W}",
+    "cmc": 3
+  },
+  "000002487ffe7ffe7efe0ffe07e00100000001b47ffe75fe45fe7ffe01fc0000": {
+    "name": "Go-Shintai of Shared Purpose",
+    "set": "neo",
+    "scryfall_id": "0ab91962-ebad-46f6-9f90-7477c224d93d",
+    "type_line": "Legendary Enchantment Creature — Shrine",
+    "mana_cost": "{3}{W}",
+    "cmc": 4
+  },
+  "00c47ffe63f00c781f3807780ff00ff00000001c7ffe7ffe3ffe3ffc03f00000": {
+    "name": "Mukotai Ambusher",
+    "set": "neo",
+    "scryfall_id": "0adf3293-c1e0-447c-8231-26fa9476a262",
+    "type_line": "Artifact Creature — Rat Ninja",
+    "mana_cost": "{3}{B}",
+    "cmc": 4
+  },
+  "00007ffe7ff071607b007f887f007fc00f8002003ffe1ffe7ffe7ffe04a00000": {
+    "name": "Flame Discharge",
+    "set": "neo",
+    "scryfall_id": "0b44534f-d10c-4754-8585-5fe9db5fd4ea",
+    "type_line": "Instant",
+    "mana_cost": "{X}{R}",
+    "cmc": 1
+  },
+  "7ffe7ffe00000700061e1dde7d0e3c06000001787ffe77f67ffe47e607f80000": {
+    "name": "Searchlight Companion",
+    "set": "neo",
+    "scryfall_id": "0b79b30e-e7aa-490e-b130-de7533e6e13b",
+    "type_line": "Artifact Creature — Drone",
+    "mana_cost": "{3}",
+    "cmc": 3
+  },
+  "00827ffe47c05fd00e503e1e7d5e7d00000000387ffe7ffe42267ffe7e7e0000": {
+    "name": "A-Akki Ronin",
+    "set": "neo",
+    "scryfall_id": "0c780e37-91b1-4fe1-85c9-7007d91209d5",
+    "type_line": "Creature — Goblin Samurai",
+    "mana_cost": "{R}",
+    "cmc": 1
+  },
+  "01807ffefe3de000f3dff31fc0094088020012007ffe7ffe5ffe7ffe020e0000": {
+    "name": "Ao, the Dawn Sky",
+    "set": "neo",
+    "scryfall_id": "0d726f3f-2920-4de4-b531-5c42006e85af",
+    "type_line": "Legendary Creature — Dragon Spirit",
+    "mana_cost": "{3}{W}{W}",
+    "cmc": 5
+  },
+  "00007ffe7fdc70847d207cc07fe06d18000007403ffe7ffe7ffe3ffe0e040000": {
+    "name": "March of Burgeoning Life",
+    "set": "neo",
+    "scryfall_id": "0e223d99-408a-413d-abb1-cb2f11ae521d",
+    "type_line": "Instant",
+    "mana_cost": "{X}{G}",
+    "cmc": 1
+  },
+  "4b1c7ffe0fc007808ff983f187e10701000004f87ffc7e7e7c7e7c7e3e6c0000": {
+    "name": "Island",
+    "set": "neo",
+    "scryfall_id": "0f66d573-5da4-4b3c-ab06-bb330cff2c9a",
+    "type_line": "Basic Land — Island",
+    "mana_cost": "",
+    "cmc": 0
+  },
+  "00001ffc3f743e7c3d9c7c047a083ef800f000007ffe3ffe7ffe7ffe10600000": {
+    "name": "March of Swirling Mist",
+    "set": "neo",
+    "scryfall_id": "100171d8-7436-44c8-b4cb-0101ffa05c25",
+    "type_line": "Instant",
+    "mana_cost": "{X}{U}",
+    "cmc": 1
+  },
+  "27c87ffe03e003e00ff90ff00e60a7e0000000687ffe7ffe7ffe7ffe010c0000": {
+    "name": "Favor of Jukai",
+    "set": "neo",
+    "scryfall_id": "1013266a-81f4-4441-8dcf-2764d14afceb",
+    "type_line": "Enchantment — Aura",
+    "mana_cost": "{3}{G}",
+    "cmc": 4
+  },
+  "00c07fea03fe01fe03fe007e00fc75f863dc7ffe0070007c77fc62fc07fe0000": {
+    "name": "Raiyuu, Storm's Edge",
+    "set": "neo",
+    "scryfall_id": "1026485e-3df5-4ac7-baa1-06bff537a506",
+    "type_line": "Legendary Creature — Human Samurai",
+    "mana_cost": "{2}{R}{W}",
+    "cmc": 4
+  },
+  "00003f1e1fc07ffe6a007d783f2e0f0e073e620447907ffc7ff87fc07f340000": {
+    "name": "Invoke Calamity",
+    "set": "neo",
+    "scryfall_id": "12af2504-ff1c-4361-a428-be9d1d35899f",
+    "type_line": "Instant",
+    "mana_cost": "{1}{R}{R}{R}{R}",
+    "cmc": 5
+  },
+  "00007ffe7fd27e007f4a7f027d9039020000003c7ffe7efe5ffe7ffe07800000": {
+    "name": "Imperial Subduer",
+    "set": "neo",
+    "scryfall_id": "13246172-7554-4edc-b6db-23dc91e4290a",
+    "type_line": "Creature — Human Samurai",
+    "mana_cost": "{2}{W}",
+    "cmc": 3
+  },
+  "000007eefffd03f80fff2ffa0770060027a00c607e027ffe3bfe3ffe00fc0000": {
+    "name": "Takenuma, Abandoned Mire",
+    "set": "neo",
+    "scryfall_id": "13410bd5-acee-4cc9-90e3-dbcf8415bcaf",
+    "type_line": "Legendary Land",
+    "mana_cost": "",
+    "cmc": 0
+  },
+  "7ffe7ffe000044104c9f8193849f02fe000001187ffe7ffe5ffe7ffe02700000": {
+    "name": "Iron Apprentice",
+    "set": "neo",
+    "scryfall_id": "13d6d9fc-509b-42db-8ac1-85066eb6e9c4",
+    "type_line": "Artifact Creature — Construct",
+    "mana_cost": "{1}",
+    "cmc": 1
+  },
+  "39ba7ffe000e003e077e097e2e7076c0000000387ffe7ffe3ffe7ffe00780000": {
+    "name": "Scrap Welder",
+    "set": "neo",
+    "scryfall_id": "14057067-2325-4229-8580-d9a6397ae343",
+    "type_line": "Creature — Goblin Artificer",
+    "mana_cost": "{2}{R}",
+    "cmc": 3
+  },
+  "00003ffc1fc037fe7e3c7a187e207e023f807ffe40002ff07ff97ff00d8e0000": {
+    "name": "Enthusiastic Mechanaut",
+    "set": "neo",
+    "scryfall_id": "15a43b94-4425-47ab-9e9f-9287aa9a807e",
+    "type_line": "Artifact Creature — Goblin Artificer",
+    "mana_cost": "{U}{R}",
+    "cmc": 2
+  },
+  "00007fc633e077fe7fde611e61ce4006fbfe7ffe000022807ffe20007fff0002": {
+    "name": "Jukai Trainee",
+    "set": "neo",
+    "scryfall_id": "164e663f-6a67-4a10-a737-33ea533a9316",
+    "type_line": "Creature — Human Samurai",
+    "mana_cost": "{1}{G}",
+    "cmc": 2
+  },
+  "3ffc7ffe18300010783c7a782e6821f8000000387ffe7ffe7ffe7ffe0a100000": {
+    "name": "Mukotai Soulripper",
+    "set": "neo",
+    "scryfall_id": "166775be-c3b7-4a17-9376-aa4229b147f9",
+    "type_line": "Artifact — Vehicle",
+    "mana_cost": "{1}{B}",
+    "cmc": 2
+  },
+  "bd888700ff06f0f16419f8691b091ff1fefab7f8000061ccefd83ff80fe60000": {
+    "name": "Junji, the Midnight Sky",
+    "set": "neo",
+    "scryfall_id": "19c61476-2105-48f3-8f57-3d0322bdc92e",
+    "type_line": "Legendary Creature — Dragon Spirit",
+    "mana_cost": "{3}{B}{B}",
+    "cmc": 5
+  },
+  "02007ffe307e391e73be73ca300600fe000006807ffe7ffe7ffe7ffe020c0000": {
+    "name": "Mnemonic Sphere",
+    "set": "neo",
+    "scryfall_id": "1a15d8d9-0575-4add-ae8d-4576e8ed2cbe",
+    "type_line": "Artifact",
+    "mana_cost": "{1}{U}",
+    "cmc": 2
+  },
+  "00002ff077fe723e781e7e1c3c3e003e003e7ffe03c00fe87ffc17007ffe0000": {
+    "name": "Isshin, Two Heavens as One",
+    "set": "neo",
+    "scryfall_id": "1bf8b008-3a7c-4b6d-8c18-263a576f0d64",
+    "type_line": "Legendary Creature — Human Samurai",
+    "mana_cost": "{R}{W}{B}",
+    "cmc": 3
+  },
+  "0000ffffc007c6e7c203f00ffc8f181f000d00007ffe7ffe3ffe3ffe006e0000": {
+    "name": "Kami of Transience",
+    "set": "neo",
+    "scryfall_id": "1c5bfeaf-ed02-4bf3-a36a-58feda05d992",
+    "type_line": "Creature — Spirit",
+    "mana_cost": "{1}{G}",
+    "cmc": 2
+  },
+  "000054fc7bfe6e1e7f0e7f007f006e06000001847ffe7ffe7ffe7ffe001c0000": {
+    "name": "Goro-Goro, Disciple of Ryusei",
+    "set": "neo",
+    "scryfall_id": "1ca736c7-35a9-48c7-b5a9-69b2a6e33ad0",
+    "type_line": "Legendary Creature — Goblin Samurai",
+    "mana_cost": "{1}{R}",
+    "cmc": 2
+  },
+  "000007fe1ffe0ff83ffe7f0e0c10021e000003807ffe7ffe6dfe7ffe007c0000": {
+    "name": "Uncharted Haven",
+    "set": "neo",
+    "scryfall_id": "1d4ad89a-3a00-4bf4-a357-4a8a089d4a82",
+    "type_line": "Land",
+    "mana_cost": "",
+    "cmc": 0
+  },
+  "3ff07ffe01c0200e200c6f303e7c1ff800000ff87ffe27567ff67ffe09060000": {
+    "name": "Ecologist's Terrarium",
+    "set": "neo",
+    "scryfall_id": "1d981026-b2df-4d8d-a9b4-296b011d9925",
+    "type_line": "Artifact",
+    "mana_cost": "{2}",
+    "cmc": 2
+  },
+  "01a07ffe01fe007e08fe18fe04de06f8000004287ffe7ffe7ffe7bfe003c0000": {
+    "name": "Soul Transfer",
+    "set": "neo",
+    "scryfall_id": "1e5aba90-c8c7-4f06-b7b3-1b4758d2791a",
+    "type_line": "Sorcery",
+    "mana_cost": "{1}{B}{B}",
+    "cmc": 3
+  },
+  "1aa07ffe33e011e013f008383c1e7ede000000387ffe7ffe7ffe3ffe0a180000": {
+    "name": "Moonsnare Specialist",
+    "set": "neo",
+    "scryfall_id": "1e8b209f-f577-45cc-9d18-03c1d67d391e",
+    "type_line": "Creature — Human Ninja",
+    "mana_cost": "{3}{U}",
+    "cmc": 4
+  },
+  "00007f161dfc0ffe0d981e9c1e7c14fc18fc7df800007ff87ff87fc07fb00000": {
+    "name": "Blade of the Oni",
+    "set": "neo",
+    "scryfall_id": "2029be79-88d8-4d15-a7d7-f5b8d469ad54",
+    "type_line": "Artifact Creature — Equipment Demon",
+    "mana_cost": "{1}{B}",
+    "cmc": 2
+  },
+  "01007ffe0ff01cf81c382e7f32321f1c0fc00f4037807ffe3ffe3ffe042e0000": {
+    "name": "Spring-Leaf Avenger",
+    "set": "neo",
+    "scryfall_id": "209115ac-06ef-4d3f-9550-5e9eda081079",
+    "type_line": "Creature — Insect Ninja",
+    "mana_cost": "{3}{G}{G}",
+    "cmc": 5
+  },
+  "01c07ffe08fc06bc02403ee03ff82fec000003f87ffe3bae3ffe3ed606fc0000": {
+    "name": "Boseiju, Who Endures",
+    "set": "neo",
+    "scryfall_id": "2135ac5a-187b-4dc9-8f82-34e8d1603416",
+    "type_line": "Legendary Land",
+    "mana_cost": "",
+    "cmc": 0
+  },
+  "00005ffa3ef87c5c7e1e3c0c3c1e383c00403ffe3ffc284c3ffe3ffe09980000": {
+    "name": "Tezzeret, Betrayer of Flesh",
+    "set": "neo",
+    "scryfall_id": "2174d16e-4a78-4d27-b220-1086c40db83e",
+    "type_line": "Legendary Planeswalker — Tezzeret",
+    "mana_cost": "{2}{U}{U}",
+    "cmc": 4
+  },
+  "09166dfe047c347c345c307c381c3f9e00003ffc3ffe2f803ffe3ffe18c80000": {
+    "name": "Tamiyo, Compleated Sage",
+    "set": "neo",
+    "scryfall_id": "222a736e-d819-452d-aeda-eb848c4b2302",
+    "type_line": "Legendary Planeswalker — Tamiyo",
+    "mana_cost": "{2}{G}{G/U/P}{U}",
+    "cmc": 5
+  },
+  "01807ffe63c063f407bc0ffc1f3807a03fc833fc3ffc00007ffe3ffc03c20000": {
+    "name": "The Wandering Emperor",
+    "set": "neo",
+    "scryfall_id": "22edc832-993b-432a-8435-8d8a72799122",
+    "type_line": "Legendary Planeswalker",
+    "mana_cost": "{2}{W}{W}",
+    "cmc": 4
+  },
+  "00007f060ffe2fde00c629ee39e43ff07ff47ffe038030007ffc1ae40ffe0000": {
+    "name": "Peerless Samurai",
+    "set": "neo",
+    "scryfall_id": "247c362c-bf21-4bca-89d4-54eb60806f10",
+    "type_line": "Creature — Human Samurai",
+    "mana_cost": "{2}{R}",
+    "cmc": 3
+  },
+  "01807ffe08fc06fc02403ee01ffc2fec038000007ffe7ffe3f7e3ffe063c0000": {
+    "name": "Boseiju, Who Endures",
+    "set": "neo",
+    "scryfall_id": "2488a80b-6882-4b59-8232-f02f800204a9",
+    "type_line": "Legendary Land",
+    "mana_cost": "",
+    "cmc": 0
+  },
+  "0000747e7fde73c47bfc1fc87e605040000011047ffe7ffe3ffe3ffe13c00000": {
+    "name": "Chainflail Centipede",
+    "set": "neo",
+    "scryfall_id": "24b8efe0-2f7b-4ada-a1b9-9c5f9e6a114d",
+    "type_line": "Artifact Creature — Equipment Insect",
+    "mana_cost": "{2}{B}",
+    "cmc": 3
+  },
+  "7ffe7ffe000001a009b83bc663c213de000007f84e5e7ffe0ffe5ffe01fc0000": {
+    "name": "Lucky Offering",
+    "set": "neo",
+    "scryfall_id": "24bbdeb0-9165-4874-a853-d19c20c250ef",
+    "type_line": "Sorcery",
+    "mana_cost": "{W}",
+    "cmc": 1
+  },
+  "17e87ffe1a041b800ff00dac07dc07f8000009207ffe7ffe7ffe3ffe0e400000": {
+    "name": "Tameshi, Reality Architect",
+    "set": "neo",
+    "scryfall_id": "26594b52-3e9c-4cde-88df-1f4e9e16676e",
+    "type_line": "Legendary Creature — Moonfolk Wizard",
+    "mana_cost": "{2}{U}",
+    "cmc": 3
+  },
+  "00007ffe26f27fc07e1a780e701e30de7dde7ffe010003c07ffc78007ffe0000": {
+    "name": "Seven-Tail Mentor",
+    "set": "neo",
+    "scryfall_id": "267efff1-cbe6-40b0-959e-72b81cbda1d0",
+    "type_line": "Creature — Fox Samurai",
+    "mana_cost": "{3}{W}",
+    "cmc": 4
+  },
+  "00007ffefff07110f000f868ea6f00ff003a00007ffe77fe7fce37fe0f700000": {
+    "name": "Surgehacker Mech",
+    "set": "neo",
+    "scryfall_id": "26ce02c6-0918-41a7-9286-7a0bdc0f166e",
+    "type_line": "Artifact — Vehicle",
+    "mana_cost": "{4}",
+    "cmc": 4
+  },
+  "0ff07ffe7c0078007f026a0270367dea000009f861fe7ffe5f665ffe1f700000": {
+    "name": "Reckoner Bankbuster",
+    "set": "neo",
+    "scryfall_id": "279acd17-6c17-427b-a69d-fc02442ff4a3",
+    "type_line": "Artifact — Vehicle",
+    "mana_cost": "{2}",
+    "cmc": 2
+  },
+  "00000ffe07fc3bde0c0c3c0e1f1e3ff8004000e07ffe3ffe2ffe3ffe0e700000": {
+    "name": "Mindlink Mech",
+    "set": "neo",
+    "scryfall_id": "28273a5b-57b3-4b7a-b017-5886c171c9c9",
+    "type_line": "Artifact — Vehicle",
+    "mana_cost": "{2}{U}",
+    "cmc": 3
+  },
+  "77fc7ffe400024142c3c0c7c3e663ee00000010c7ffe7ffe7ffe3ffe00780000": {
+    "name": "Nashi, Moon Sage's Scion",
+    "set": "neo",
+    "scryfall_id": "2893b070-a610-4273-beb2-7609a2da0499",
+    "type_line": "Legendary Creature — Rat Ninja",
+    "mana_cost": "{1}{B}{B}",
+    "cmc": 3
+  },
+  "57ec7ffe4000641c2c3c0c5e3e663ee0060002007ffe7ffe3ffe3ffc02f80000": {
+    "name": "Nashi, Moon Sage's Scion",
+    "set": "neo",
+    "scryfall_id": "2a509120-d075-43cc-9422-35b2bf8183aa",
+    "type_line": "Legendary Creature — Rat Ninja",
+    "mana_cost": "{1}{B}{B}",
+    "cmc": 3
+  },
+  "00007ffe079c0dfe30fe71fe638003f000d000007ffe7ffe5fde45fe3e740000": {
+    "name": "March of Otherworldly Light",
+    "set": "neo",
+    "scryfall_id": "2bbf453c-bded-4d39-bebf-fd240ec44287",
+    "type_line": "Instant",
+    "mana_cost": "{X}{W}",
+    "cmc": 1
+  },
+  "00007f8e1df07dfc38fc70f06c36703660567ffe00001ffcffff7f3809860000": {
+    "name": "Satoru Umezawa",
+    "set": "neo",
+    "scryfall_id": "2c178c8d-ef57-4a69-a72d-c6c6f1eda617",
+    "type_line": "Legendary Creature — Human Ninja",
+    "mana_cost": "{1}{U}{B}",
+    "cmc": 3
+  },
+  "00e27ffe5ee4164063e01dc064fe6c2e7e3e7ffc004000fc2bfc67fc43fe0000": {
+    "name": "Risona, Asari Commander",
+    "set": "neo",
+    "scryfall_id": "2cd32b69-5e1e-4990-88ec-85b21056ceae",
+    "type_line": "Legendary Creature — Human Samurai",
+    "mana_cost": "{1}{R}{W}",
+    "cmc": 3
+  },
+  "39a07ffe0f800f887ffe7ec13e400220000001c07ffe7ffe7ffe3ffe003c0000": {
+    "name": "Tempered in Solitude",
+    "set": "neo",
+    "scryfall_id": "2cfd0693-6dba-4c0d-8c42-859d7bf38c40",
+    "type_line": "Enchantment",
+    "mana_cost": "{1}{R}",
+    "cmc": 2
+  },
+  "000001fe07ff1fdf080e7c0f1c0f7f9c05e000003ffe3ffe0ffe3ffe1e700000": {
+    "name": "Mindlink Mech",
+    "set": "neo",
+    "scryfall_id": "2d1e4d50-8ca7-4dc0-8181-aa51beafb218",
+    "type_line": "Artifact — Vehicle",
+    "mana_cost": "{2}{U}",
+    "cmc": 3
+  },
+  "00004ffe0dfe7e1c3a1e3e3a063e3c1c00003ffc2f7e03fc3ffe3ffe11980000": {
+    "name": "Kaito Shizuki",
+    "set": "neo",
+    "scryfall_id": "2d35a710-3008-4e27-8afd-6e83329f9917",
+    "type_line": "Legendary Planeswalker — Kaito",
+    "mana_cost": "{1}{U}{B}",
+    "cmc": 3
+  },
+  "00007ffe0ff0793c784e70fe711e013c000004847ffe7ffe3ffe7ffc0f800000": {
+    "name": "Fang of Shigeki",
+    "set": "neo",
+    "scryfall_id": "2dd0fef1-209f-4de5-a736-8f9bca2faa0a",
+    "type_line": "Enchantment Creature — Snake Ninja",
+    "mana_cost": "{G}",
+    "cmc": 1
+  },
+  "000017fe3fc37f8338ff807fc00bc03d000f00073cfa7ffe3efe2ffe027e0000": {
+    "name": "Ogre-Head Helm",
+    "set": "neo",
+    "scryfall_id": "2eecab66-d600-49d5-8b5a-f70872375d8b",
+    "type_line": "Artifact Creature — Equipment Ogre",
+    "mana_cost": "{1}{R}",
+    "cmc": 2
+  },
+  "00003f860bfe7ff83fc00f703f683e247f7e7ffe040040417fff7ffc000e0000": {
+    "name": "Covert Technician",
+    "set": "neo",
+    "scryfall_id": "2f268152-304a-4db8-a3f9-dd9d0f3319a1",
+    "type_line": "Artifact Creature — Human Ninja",
+    "mana_cost": "{2}{U}",
+    "cmc": 3
+  },
+  "000007fc3ffc3f3cfffff7e10701000000003c7c7efc7c3e7c3e7c3e7e7c0000": {
+    "name": "Mountain",
+    "set": "neo",
+    "scryfall_id": "2fe601b0-0398-47f0-9e4f-9f841ad79b9b",
+    "type_line": "Basic Land — Mountain",
+    "mana_cost": "",
+    "cmc": 0
+  },
+  "00003e7c7efc7f183efcf83cf8107820700180073b787ffe3ffe3ffe140e0000": {
+    "name": "Weaver of Harmony",
+    "set": "neo",
+    "scryfall_id": "3009fad8-40cb-4421-9fa8-fd525c5f7189",
+    "type_line": "Enchantment Creature — Snake Druid",
+    "mana_cost": "{1}{G}",
+    "cmc": 2
+  },
+  "00007ffe0ffc08fc7afe70fc31e07080000000387ffe7ffe3ffe7ffe006c0000": {
+    "name": "Biting-Palm Ninja",
+    "set": "neo",
+    "scryfall_id": "3017df51-67ae-4c3d-8210-086f83bc2040",
+    "type_line": "Creature — Human Ninja",
+    "mana_cost": "{2}{B}",
+    "cmc": 3
+  },
+  "00001f1c3ff81ffe0ff83f006f807fa07fa27f9e48027e007ff2401e7ffe0000": {
+    "name": "Invoke the Winds",
+    "set": "neo",
+    "scryfall_id": "307380fe-7484-4513-8180-f10411ea7726",
+    "type_line": "Sorcery",
+    "mana_cost": "{1}{U}{U}{U}{U}",
+    "cmc": 5
+  },
+  "00027ffe50fe01f607f03fd033de103600327ffc041e47fc7ff87ff00ece0000": {
+    "name": "Lion Sash",
+    "set": "neo",
+    "scryfall_id": "308c8834-e06e-452a-b82e-cb2b8fe0c304",
+    "type_line": "Artifact Creature — Equipment Cat",
+    "mana_cost": "{1}{W}",
+    "cmc": 2
+  },
+  "00007fda7fcc784e78ce7c1afc8ac482634276067e8163f954f96ff87ff00000": {
+    "name": "Reckoner Bankbuster",
+    "set": "neo",
+    "scryfall_id": "30bf5955-67fe-4bbf-acd5-164bf087e7a2",
+    "type_line": "Artifact — Vehicle",
+    "mana_cost": "{2}",
+    "cmc": 2
+  },
+  "01801ffc7fb07f807b007c0c7c0e793e091000007ffe7ffe3ffe7ffe02700000": {
+    "name": "Kotose, the Silent Spider",
+    "set": "neo",
+    "scryfall_id": "314e97b5-cd43-4f5e-acdd-a107208e061c",
+    "type_line": "Legendary Creature — Human Ninja",
+    "mana_cost": "{3}{U}{B}",
+    "cmc": 5
+  },
+  "00007f8637f02ffe7af678e07d827c007fe07fa400003ff87ffc3ffc025e0000": {
+    "name": "Nezumi Bladeblesser",
+    "set": "neo",
+    "scryfall_id": "317bdf0d-df7d-4ca2-8131-060ba7cf2602",
+    "type_line": "Creature — Rat Samurai",
+    "mana_cost": "{2}{B}",
+    "cmc": 3
+  },
+  "39f01060fff06770f9f0fa13bf110320c3e07e8078007ffc7ffc7ff80de00000": {
+    "name": "Sokenzan, Crucible of Defiance",
+    "set": "neo",
+    "scryfall_id": "327333cc-2cc9-44ba-a0e6-d01329c416a3",
+    "type_line": "Legendary Land",
+    "mana_cost": "",
+    "cmc": 0
+  },
+  "09be7ffe19e0083003f80cb885fd0ff0000008187ffe7ffe3ffe3fee00fc0000": {
+    "name": "Return to Action",
+    "set": "neo",
+    "scryfall_id": "342ec072-e581-490c-b5ae-a625bd35a153",
+    "type_line": "Instant",
+    "mana_cost": "{1}{B}",
+    "cmc": 2
+  },
+  "00007ff67fd0786c6a4846726fa07fe07fe67ffe038030003ffc7f405fce0000": {
+    "name": "Norika Yamazaki, the Poet",
+    "set": "neo",
+    "scryfall_id": "344df5c2-a963-42e3-b61b-1712f15e1eb9",
+    "type_line": "Legendary Creature — Human Samurai",
+    "mana_cost": "{2}{W}",
+    "cmc": 3
+  },
+  "3ff47ffe010640066f86078e147e0c3e000001787ffe57fe7ffe7ffe04900000": {
+    "name": "Papercraft Decoy",
+    "set": "neo",
+    "scryfall_id": "3453084c-42cc-4241-b244-c79e704f96c8",
+    "type_line": "Artifact Creature — Frog",
+    "mana_cost": "{2}",
+    "cmc": 2
+  },
+  "33e87ffe40c0784270c077381ef847f0000009087ffe7ffe4f865ffe1f7c0000": {
+    "name": "Eater of Virtue",
+    "set": "neo",
+    "scryfall_id": "34d92077-d7b2-4996-848f-fd4917e2fb42",
+    "type_line": "Legendary Artifact — Equipment",
+    "mana_cost": "{1}",
+    "cmc": 1
+  },
+  "00fe0ffa0ff01bc0fff905e305e30103000001c07ffe7ffe1ffe3ffe007e0000": {
+    "name": "Eiganjo Uprising",
+    "set": "neo",
+    "scryfall_id": "35203138-5237-49aa-a335-7a32829548a1",
+    "type_line": "Sorcery",
+    "mana_cost": "{X}{R}{W}",
+    "cmc": 2
+  },
+  "00002dc47ffe7cf278207e1e7ede6c007ff0362068007ff87ffe7ffe11800000": {
+    "name": "Nashi, Moon Sage's Scion",
+    "set": "neo",
+    "scryfall_id": "3564486e-e19b-4a11-a587-ad3e040cd914",
+    "type_line": "Legendary Creature — Rat Ninja",
+    "mana_cost": "{1}{B}{B}",
+    "cmc": 3
+  },
+  "00007ff63f0c7f70722059e03be07ff07ff87ffe00018241ffffc001c3cf4002": {
+    "name": "Mukotai Ambusher",
+    "set": "neo",
+    "scryfall_id": "357594c7-a9a6-468d-b262-e5f7d5e35f54",
+    "type_line": "Artifact Creature — Rat Ninja",
+    "mana_cost": "{3}{B}",
+    "cmc": 4
+  },
+  "000061fe3feeafe0be003c00ff01ffe1c0e000007cfe7ffe3fde37fe067c0000": {
+    "name": "Invoke Despair",
+    "set": "neo",
+    "scryfall_id": "359445e8-2f4a-4e73-9201-2c7a11d26666",
+    "type_line": "Sorcery",
+    "mana_cost": "{1}{B}{B}{B}{B}",
+    "cmc": 5
+  },
+  "00007ffe1fec2f603e603f007f807fe0000000387ffe7ffe3ffe3ffe007c0000": {
+    "name": "Invoke Despair",
+    "set": "neo",
+    "scryfall_id": "35af9d5c-4449-4549-b549-c3ba4a67dee0",
+    "type_line": "Sorcery",
+    "mana_cost": "{1}{B}{B}{B}{B}",
+    "cmc": 5
+  },
+  "00c07ffe4fb01fc01fe00dc60f0e0f6e000001f85ffe7f766ffe7ffe00f00000": {
+    "name": "Brute Suit",
+    "set": "neo",
+    "scryfall_id": "363cb43a-e358-4380-a42f-9b095ca522c6",
+    "type_line": "Artifact — Vehicle",
+    "mana_cost": "{3}",
+    "cmc": 3
+  },
+  "00007bfcffdcf084fd20f800ffc0ed18a40000007ffe7ffe7ffe7ffe06400000": {
+    "name": "March of Burgeoning Life",
+    "set": "neo",
+    "scryfall_id": "36efdf01-9e6f-4963-887a-9018df56ced4",
+    "type_line": "Instant",
+    "mana_cost": "{X}{G}",
+    "cmc": 1
+  },
+  "00003e067f7c79fe019e41ee487e7c727fc67e0040007fbe7ffc72cc7ef00000": {
+    "name": "Mindlink Mech",
+    "set": "neo",
+    "scryfall_id": "37163f66-393f-4cb7-9f55-307d3d4b5975",
+    "type_line": "Artifact — Vehicle",
+    "mana_cost": "{2}{U}",
+    "cmc": 3
+  },
+  "01c00ffe06fe04fe7c7f123f001f1836000001c07ffe7ffe3ffe7ffe00f00000": {
+    "name": "Raiyuu, Storm's Edge",
+    "set": "neo",
+    "scryfall_id": "37748b74-0eda-4b20-a08f-faa418adb9ff",
+    "type_line": "Legendary Creature — Human Samurai",
+    "mana_cost": "{2}{R}{W}",
+    "cmc": 4
+  },
+  "37d47ffe00e60016819f816f80ff808f000003047ffe7ffe2ffe3ffe00fc0000": {
+    "name": "Simian Sling",
+    "set": "neo",
+    "scryfall_id": "37a00f95-d563-4d51-a5f2-af139261921a",
+    "type_line": "Artifact Creature — Equipment Monkey",
+    "mana_cost": "{R}",
+    "cmc": 1
+  },
+  "00007ffe07f83f987f187f38380827d8000004907ffe7ffe3ffe3ffe007c0000": {
+    "name": "A-Moon-Circuit Hacker",
+    "set": "neo",
+    "scryfall_id": "38f66d0c-5d03-449f-a056-b97e2ed6a3a1",
+    "type_line": "Enchantment Creature — Human Ninja",
+    "mana_cost": "{1}{U}",
+    "cmc": 2
+  },
+  "01c07ffe03f80ef01efa3cea78c2700a000001887ffe7ffe7ffe7fde001e0000": {
+    "name": "Light-Paws, Emperor's Voice",
+    "set": "neo",
+    "scryfall_id": "39555a72-a57b-45ee-9222-ce3b9e8de126",
+    "type_line": "Legendary Creature — Fox Advisor",
+    "mana_cost": "{1}{W}",
+    "cmc": 2
+  },
+  "0000180c7ffc7ffe10e47cfe0cfe00da03fa7ffc70007f007fc27fe03ff80000": {
+    "name": "Farewell",
+    "set": "neo",
+    "scryfall_id": "3956b833-0b74-4890-bc67-4aed7df33af4",
+    "type_line": "Sorcery",
+    "mana_cost": "{4}{W}{W}",
+    "cmc": 6
+  },
+  "00002f707efe763e7c027e36783a741a7d6a7f7000007df87ff47f107ff00000": {
+    "name": "Hidetsugu, Devouring Chaos",
+    "set": "neo",
+    "scryfall_id": "3981fc94-efb5-4256-8adb-4538515a085c",
+    "type_line": "Legendary Creature — Ogre Demon",
+    "mana_cost": "{3}{B}",
+    "cmc": 4
+  },
+  "00007ffe3f827f8278fe507e601e403e000003047ffe7ffe3ffe3ffe0e440000": {
+    "name": "Ogre-Head Helm",
+    "set": "neo",
+    "scryfall_id": "3a0d5f7d-4e8a-42ad-8875-610004bd9796",
+    "type_line": "Artifact Creature — Equipment Ogre",
+    "mana_cost": "{1}{R}",
+    "cmc": 2
+  },
+  "7ffc7ffe004000e001f801fc03fe03fe000007f85ffe5cde7ffe7ffe04c00000": {
+    "name": "Light the Way",
+    "set": "neo",
+    "scryfall_id": "3a2fd960-c4ec-4dfa-a61d-f8577b9d3519",
+    "type_line": "Instant",
+    "mana_cost": "{W}",
+    "cmc": 1
+  },
+  "00007fee5dce751a7c0278027f067f1e00000ff87ffe529e2fde5ffe1e640000": {
+    "name": "Invoke Justice",
+    "set": "neo",
+    "scryfall_id": "3a598ab6-3254-49fe-b69f-e7c759129599",
+    "type_line": "Sorcery",
+    "mana_cost": "{1}{W}{W}{W}{W}",
+    "cmc": 5
+  },
+  "00000cfc3f753f7d3d9c7c047a083ef837fc063c00007ffe7ffe7ffe38000000": {
+    "name": "March of Swirling Mist",
+    "set": "neo",
+    "scryfall_id": "3a5e72c2-e229-43c9-9e5a-df4754732d19",
+    "type_line": "Instant",
+    "mana_cost": "{X}{U}",
+    "cmc": 1
+  },
+  "00006ffe3fe83cd83c7a7c303c1a1db8000001847ffe7ffe7ffe5fee003e0000": {
+    "name": "Eiganjo Exemplar",
+    "set": "neo",
+    "scryfall_id": "3b0a9cc0-bb6d-47f7-b0d5-3956c46a1b3a",
+    "type_line": "Enchantment Creature — Human Samurai",
+    "mana_cost": "{1}{W}",
+    "cmc": 2
+  },
+  "29a07ffe03f801f057fe6fee087a0002000000687ffe7ffe7ffe1dd00ffc0000": {
+    "name": "Gift of Wrath",
+    "set": "neo",
+    "scryfall_id": "3c33f6d9-be29-4698-96f9-d393a2c8ad68",
+    "type_line": "Enchantment — Aura",
+    "mana_cost": "{3}{R}",
+    "cmc": 4
+  },
+  "01007ffe7ff071107100786a7a7e02fe000009f87ffe17be7fce3ffe0e700000": {
+    "name": "Surgehacker Mech",
+    "set": "neo",
+    "scryfall_id": "3c4bf679-01cc-4786-a3bd-89c8ae70fdfa",
+    "type_line": "Artifact — Vehicle",
+    "mana_cost": "{4}",
+    "cmc": 4
+  },
+  "00007ffe63fe01ce43dfc9876033c0c7000007f8575e7fbe1fde5ffe03f40000": {
+    "name": "Imperial Oath",
+    "set": "neo",
+    "scryfall_id": "3d6750dd-2303-493b-885d-1bfb5787b16c",
+    "type_line": "Sorcery",
+    "mana_cost": "{5}{W}",
+    "cmc": 6
+  },
+  "37e07ffe3a26002270c07fe00fe207f20000030c77fe7ffe7ffe5df60e160000": {
+    "name": "Lion Sash",
+    "set": "neo",
+    "scryfall_id": "3e1766e9-2fa7-4446-a255-7beea1467ece",
+    "type_line": "Artifact Creature — Equipment Cat",
+    "mana_cost": "{1}{W}",
+    "cmc": 2
+  },
+  "3ff47ffe1002027060fe7bbe1c181f00000001187ffe7ffe7ffe7ffe02300000": {
+    "name": "Runaway Trash-Bot",
+    "set": "neo",
+    "scryfall_id": "3eebf6a6-f1fd-40a1-ac27-367deafa6f2a",
+    "type_line": "Artifact Creature — Construct",
+    "mana_cost": "{3}",
+    "cmc": 3
+  },
+  "00001fee3ff87f883fa00fb03ee81fc0370034003ffe1ff81dc07ffe3ff80000": {
+    "name": "Tezzeret, Betrayer of Flesh",
+    "set": "neo",
+    "scryfall_id": "40dd7793-5a6d-4b5c-8924-b0aee73e31eb",
+    "type_line": "Legendary Planeswalker — Tezzeret",
+    "mana_cost": "{2}{U}{U}",
+    "cmc": 4
+  },
+  "00007ff27f7660f277e0463e3c3e500e1dfe7ffe01c003207ffc62407ffe0000": {
+    "name": "Imperial Subduer",
+    "set": "neo",
+    "scryfall_id": "41e7420e-55d0-4f4b-84bb-e5b86616cbb3",
+    "type_line": "Creature — Human Samurai",
+    "mana_cost": "{2}{W}",
+    "cmc": 3
+  },
+  "7ffe7ffe000070007f807f805fc0063e000003f82f5e7ffe7bfe7fae0fc00000": {
+    "name": "Wanderer's Intervention",
+    "set": "neo",
+    "scryfall_id": "43708ec9-a85a-4244-86b4-67b30b41d854",
+    "type_line": "Instant",
+    "mana_cost": "{1}{W}",
+    "cmc": 2
+  },
+  "03801ff817f83a7c7e3c7e707fc00610000007007ffe7ffe7ffc7ffe0d800000": {
+    "name": "Naomi, Pillar of Order",
+    "set": "neo",
+    "scryfall_id": "4400fd66-1a24-47fb-bc94-37e0aae0e610",
+    "type_line": "Legendary Creature — Human Advisor",
+    "mana_cost": "{3}{W}{B}",
+    "cmc": 5
+  },
+  "0000042c7ffe7f7e7e7e7c3e642c0700000000347ffe7ffe3afe7ffe03f00000": {
+    "name": "Go-Shintai of Hidden Cruelty",
+    "set": "neo",
+    "scryfall_id": "45e1ff1e-916b-4455-84cb-4125a79d76de",
+    "type_line": "Legendary Enchantment Creature — Shrine",
+    "mana_cost": "{3}{B}",
+    "cmc": 4
+  },
+  "7ffe7ffe038000008ff98ff183818701000008fc6d3e7ffe5ffe1ffe00fc0000": {
+    "name": "Bronze Cudgels",
+    "set": "neo",
+    "scryfall_id": "45fa226c-cc31-4c22-a167-40985706557b",
+    "type_line": "Artifact — Equipment",
+    "mana_cost": "{1}",
+    "cmc": 1
+  },
+  "01800632ffe0ff9e1f0cde0c611e585f3fff0c4000007ffe7ffe7ffe18100000": {
+    "name": "Hinata, Dawn-Crowned",
+    "set": "neo",
+    "scryfall_id": "466f98c4-c5a7-4fad-b183-a3fbd28cb66b",
+    "type_line": "Legendary Creature — Kirin Spirit",
+    "mana_cost": "{1}{U}{R}{W}",
+    "cmc": 4
+  },
+  "7c1e7f1e04380f380f7c3e1c7e1c043c587e7df800005ff85ff87fc07ff00000": {
+    "name": "Blade of the Oni",
+    "set": "neo",
+    "scryfall_id": "46f5c2f4-1690-4392-80d6-d99148bc8b13",
+    "type_line": "Artifact Creature — Equipment Demon",
+    "mana_cost": "{1}{B}",
+    "cmc": 2
+  },
+  "00003ff40ffc0ffc07ff03e203f603f041f8738449007ffd7ff07fc06ff20000": {
+    "name": "March of Wretched Sorrow",
+    "set": "neo",
+    "scryfall_id": "4703bba7-3248-410f-99a8-dffd629bab4c",
+    "type_line": "Instant",
+    "mana_cost": "{X}{B}",
+    "cmc": 1
+  },
+  "00001f087fce7bfe44de181e71be701e77de7ff000027e047c0e7ffe347e0000": {
+    "name": "Hinata, Dawn-Crowned",
+    "set": "neo",
+    "scryfall_id": "4737d299-09ce-4012-b3e9-c93a09035d65",
+    "type_line": "Legendary Creature — Kirin Spirit",
+    "mana_cost": "{1}{U}{R}{W}",
+    "cmc": 4
+  },
+  "3ff87ffe0070007080711e711e791f71000008187ffe7ffe7ffe7ffe00380000": {
+    "name": "Replication Specialist",
+    "set": "neo",
+    "scryfall_id": "475bb3b5-b648-460c-b0ea-89ecfe0ff226",
+    "type_line": "Creature — Moonfolk Artificer",
+    "mana_cost": "{4}{U}",
+    "cmc": 5
+  },
+  "00007ff608fe787e307e103e53ba6c3a7ffe7fe200003360fffd7ff0004f0000": {
+    "name": "Futurist Operative",
+    "set": "neo",
+    "scryfall_id": "47bad5c1-5804-4fba-91d9-3a49951f6e06",
+    "type_line": "Creature — Human Ninja",
+    "mana_cost": "{3}{U}",
+    "cmc": 4
+  },
+  "00001f647efe787e7c027e36383e701e7d6e777000007df87ff47f107f960000": {
+    "name": "Hidetsugu, Devouring Chaos",
+    "set": "neo",
+    "scryfall_id": "4826991d-c3c3-45ff-9dfc-4246a84b40e0",
+    "type_line": "Legendary Creature — Ogre Demon",
+    "mana_cost": "{3}{B}",
+    "cmc": 4
+  },
+  "00007ffe7cc017fc002c083e13fe67fe066401f83ffc0ece2ffe7ffe007c0000": {
+    "name": "Otawara, Soaring City",
+    "set": "neo",
+    "scryfall_id": "486d7edc-d983-41f0-8b78-c99aecd72996",
+    "type_line": "Legendary Land",
+    "mana_cost": "",
+    "cmc": 0
+  },
+  "02847ffe087e18dcb5ff81fb800b8039000000387ffe7ffe3ffe1bfe0f700000": {
+    "name": "Virus Beetle",
+    "set": "neo",
+    "scryfall_id": "488ee202-0d28-4cc0-8a7d-644d9878e952",
+    "type_line": "Artifact Creature — Insect",
+    "mana_cost": "{1}{B}",
+    "cmc": 2
+  },
+  "7ffe7ffe000003808ff18ff18fe9000100003efc7e7c7c3c783e7e7e3e7c0000": {
+    "name": "Swamp",
+    "set": "neo",
+    "scryfall_id": "48f7492c-67f2-4ba3-848b-7a6a8df7e88b",
+    "type_line": "Basic Land — Swamp",
+    "mana_cost": "",
+    "cmc": 0
+  },
+  "00006ffa7e98787e7efe7ce278e06000000001f87ffe5d7e6ffe7ffe03300000": {
+    "name": "Dragonfly Suit",
+    "set": "neo",
+    "scryfall_id": "4900862f-90f4-450b-a775-219da4ce67ef",
+    "type_line": "Artifact — Vehicle",
+    "mana_cost": "{2}{W}",
+    "cmc": 3
+  },
+  "00006ffe3ffc01f80ffeaffb0762040000007ffc7ffc0e067ffe7ffe02840000": {
+    "name": "Takenuma, Abandoned Mire",
+    "set": "neo",
+    "scryfall_id": "499037cc-a577-41cb-8ca2-5e117945634f",
+    "type_line": "Legendary Land",
+    "mana_cost": "",
+    "cmc": 0
+  },
+  "021c7ffe7f8071807f80fc346370636800003cfc7efc7c3c7c3e7c3e7e7c0000": {
+    "name": "Mountain",
+    "set": "neo",
+    "scryfall_id": "4b8489c0-b01c-466e-b33b-239406d7ea69",
+    "type_line": "Basic Land — Mountain",
+    "mana_cost": "",
+    "cmc": 0
+  },
+  "00001d823ffe37fe0ff81ff81ec4078443fe71dc403065dc405e5ffe5efe0000": {
+    "name": "Mirror Box",
+    "set": "neo",
+    "scryfall_id": "4bf676a6-8ccb-4908-9e49-ccb4a319d588",
+    "type_line": "Artifact",
+    "mana_cost": "{3}",
+    "cmc": 3
+  },
+  "1fc67ffe00e010963ef814a2603e58ee000001847ffe7ffe7ffe7ffe001c0000": {
+    "name": "Akki Ember-Keeper",
+    "set": "neo",
+    "scryfall_id": "4d83e837-fcd1-4833-9117-e6f1bb53caad",
+    "type_line": "Enchantment Creature — Goblin Warrior",
+    "mana_cost": "{1}{R}",
+    "cmc": 2
+  },
+  "00005ffe010e7ffe7ffa7f8071c06060000000f87ffc7dfe7ffe7ffe0e000000": {
+    "name": "Plains",
+    "set": "neo",
+    "scryfall_id": "4db21784-e56b-46bd-97a4-3770f2ef5caf",
+    "type_line": "Basic Land — Plains",
+    "mana_cost": "",
+    "cmc": 0
+  },
+  "00001ffc1ff81f7c1f3c4e3c037807f8000000387ffe7ffe3ffe0ffe3a380000": {
+    "name": "A-Thousand-Faced Shadow",
+    "set": "neo",
+    "scryfall_id": "4df5e7d3-cd49-498e-b2e3-37db891edbbe",
+    "type_line": "Creature — Human Ninja",
+    "mana_cost": "{U}",
+    "cmc": 1
+  },
+  "02807ffe1ff807c007e26efe60006e760e1008103ff87ffe3ffe7ffe00780000": {
+    "name": "Blade of the Oni",
+    "set": "neo",
+    "scryfall_id": "4e9896df-0d5c-4b02-b584-345f4c7cd127",
+    "type_line": "Artifact Creature — Equipment Demon",
+    "mana_cost": "{1}{B}",
+    "cmc": 2
+  },
+  "1bf87ffe00b003b0077c3ef80cf8089e010001c03ffe7ffe7ffe3ffe101c0000": {
+    "name": "Suit Up",
+    "set": "neo",
+    "scryfall_id": "50870bfd-7779-4a1c-b18f-57fac7e193b1",
+    "type_line": "Instant",
+    "mana_cost": "{2}{U}",
+    "cmc": 3
+  },
+  "60027f123ff2787278424c3e423647fefffe7e0048007e487ff95e617fb00000": {
+    "name": "Mechtitan Core",
+    "set": "neo",
+    "scryfall_id": "508b7411-09e5-4990-88ca-649321dd62b5",
+    "type_line": "Artifact — Vehicle",
+    "mana_cost": "{2}",
+    "cmc": 2
+  },
+  "00007ffe0fdc1e8e7f1e791e7c16080c000003407ffe7ffe7ffe7ffe001c0000": {
+    "name": "Storyweave",
+    "set": "neo",
+    "scryfall_id": "50a77eed-aa03-43b7-b3c8-6aee4c96c648",
+    "type_line": "Instant",
+    "mana_cost": "{2}{G}",
+    "cmc": 3
+  },
+  "000006fc7ffe783e783e79c67f007e00000000f07ffe3ffe7ffe2eee01fc0000": {
+    "name": "Awakened Awareness",
+    "set": "neo",
+    "scryfall_id": "51378e10-2f17-445b-97e9-5c373234ba52",
+    "type_line": "Enchantment — Aura",
+    "mana_cost": "{X}{U}{U}",
+    "cmc": 2
+  },
+  "e7e0a7e083f0c3e0c1e0f9e0ff81d803e006b058fc01ffd9fffd7ffe20800000": {
+    "name": "Kairi, the Swirling Sky",
+    "set": "neo",
+    "scryfall_id": "516dc285-f0f9-4a5c-a7b7-395c1821b42c",
+    "type_line": "Legendary Creature — Dragon Spirit",
+    "mana_cost": "{4}{U}{U}",
+    "cmc": 6
+  },
+  "00007fd603f867fe478e31ce2c7e191c749e7cda740077c07ffe4ac27ff00000": {
+    "name": "Ogre-Head Helm",
+    "set": "neo",
+    "scryfall_id": "517f143d-986a-474e-be48-819d1f9f078c",
+    "type_line": "Artifact Creature — Equipment Ogre",
+    "mana_cost": "{1}{R}",
+    "cmc": 2
+  },
+  "008003fa3ffe0f6e3f4a333e198e0f82000001c07ffe7ffe3ffe3ffe02f00000": {
+    "name": "Risona, Asari Commander",
+    "set": "neo",
+    "scryfall_id": "51d8f1fa-ca92-4e2e-91e8-195bdad82def",
+    "type_line": "Legendary Creature — Human Samurai",
+    "mana_cost": "{1}{R}{W}",
+    "cmc": 3
+  },
+  "00007ffe79e03be27a7a7e7e203e000e000001187ffe7ffe7ffe5ff201f80000": {
+    "name": "Containment Construct",
+    "set": "neo",
+    "scryfall_id": "520e5505-429b-4da0-b25e-14b8d4e81ce3",
+    "type_line": "Artifact Creature — Construct",
+    "mana_cost": "{2}",
+    "cmc": 2
+  },
+  "03c07ffe7f407c007c7c780e720e260f000011407ffe7ffe7ffe3ffe003c0000": {
+    "name": "Shigeki, Jukai Visionary",
+    "set": "neo",
+    "scryfall_id": "52a16623-7e6d-405b-95db-bf18aeea3f49",
+    "type_line": "Legendary Enchantment Creature — Snake Druid",
+    "mana_cost": "{1}{G}",
+    "cmc": 2
+  },
+  "00007ff6fbf278127fcefb86670078007f9e7ffe038002807ff830007fff000a": {
+    "name": "Upriser Renegade",
+    "set": "neo",
+    "scryfall_id": "52af0f2d-de2e-4554-ae32-c88bc7ba7c71",
+    "type_line": "Creature — Human Samurai",
+    "mana_cost": "{1}{R}",
+    "cmc": 2
+  },
+  "01807f7efcc07ce0fff8f05cd0ea8001001900007ffe7ffe3ffe7ffe003c0000": {
+    "name": "Tatsunari, Toad Rider",
+    "set": "neo",
+    "scryfall_id": "52b9c95e-6691-4736-bfbd-0932458f03c6",
+    "type_line": "Legendary Creature — Human Ninja",
+    "mana_cost": "{2}{B}",
+    "cmc": 3
+  },
+  "01807ffeff80f044f8e0fed0ce00ff00d00000007ffe7ffe7ffe7ffe00700000": {
+    "name": "Junji, the Midnight Sky",
+    "set": "neo",
+    "scryfall_id": "52f0f499-35d7-4e04-a2fc-d6735f6087d4",
+    "type_line": "Legendary Creature — Dragon Spirit",
+    "mana_cost": "{3}{B}{B}",
+    "cmc": 5
+  },
+  "01007ffe0e703e7c7cbe791e738e0180000001307ffe7ffe3ffe7ffc06700000": {
+    "name": "Gravelighter",
+    "set": "neo",
+    "scryfall_id": "532c5b14-75cf-4e4c-9b80-2d56a86e2844",
+    "type_line": "Creature — Spirit",
+    "mana_cost": "{2}{B}",
+    "cmc": 3
+  },
+  "00003ffe7e267f067ef67f027e421802000000e07ffe7ffe7ffe3ffe00f00000": {
+    "name": "Jukai Naturalist",
+    "set": "neo",
+    "scryfall_id": "5366900b-2abf-4e5c-8507-f51aca9c7ce8",
+    "type_line": "Enchantment Creature — Human Monk",
+    "mana_cost": "{G}{W}",
+    "cmc": 2
+  },
+  "04007ffe1e701f3c6efc78fe403c023203e67ffe00004ff17fff4ff003ce0000": {
+    "name": "Blade-Blizzard Kitsune",
+    "set": "neo",
+    "scryfall_id": "53d244d4-c2c4-4032-b249-794556d79429",
+    "type_line": "Creature — Fox Ninja",
+    "mana_cost": "{2}{W}",
+    "cmc": 3
+  },
+  "700e7f8e3e8c3f003ce87c007d807fe25ff07f0060d073f07fff70117ff00000": {
+    "name": "Mukotai Soulripper",
+    "set": "neo",
+    "scryfall_id": "53d7df77-dc10-4c88-a51e-43d6b86ef10e",
+    "type_line": "Artifact — Vehicle",
+    "mana_cost": "{1}{B}",
+    "cmc": 2
+  },
+  "00003ffe1ffc0df07fec00cc3e0c3c9c000004847ffe7ffe3ffe1ff61fc00000": {
+    "name": "Bearer of Memory",
+    "set": "neo",
+    "scryfall_id": "540ba70a-bea8-4512-83ba-92dab6d25b52",
+    "type_line": "Enchantment Creature — Human Monk",
+    "mana_cost": "{2}{G}",
+    "cmc": 3
+  },
+  "00000bc07ffe67fe7e7e7306788c5c10fffe7ffe010000407ffc00001fff400f": {
+    "name": "Heir of the Ancient Fang",
+    "set": "neo",
+    "scryfall_id": "54509524-92b9-41a3-8aba-a8955a7dfa1a",
+    "type_line": "Creature — Snake Samurai",
+    "mana_cost": "{2}{G}",
+    "cmc": 3
+  },
+  "000009fc3e7e7e7e7fff7ffe00240000000007803ffe7ffe7ffe7ffe03800000": {
+    "name": "Fade into Antiquity",
+    "set": "neo",
+    "scryfall_id": "55174ab7-9f2e-42e5-a61b-57458cfd33f3",
+    "type_line": "Sorcery",
+    "mana_cost": "{2}{G}",
+    "cmc": 3
+  },
+  "00007ffe071e0dfe60fe71fe638003f000000ff87ffe4d2e7fde455e3e7c0000": {
+    "name": "March of Otherworldly Light",
+    "set": "neo",
+    "scryfall_id": "553fb946-2706-475b-89f9-e4355ec9ea2b",
+    "type_line": "Instant",
+    "mana_cost": "{X}{W}",
+    "cmc": 1
+  },
+  "00007ff0798ce3dff7dbc7e2674024100f3c0c1078067ffe3ffe3ffe0e480000": {
+    "name": "Invoke the Ancients",
+    "set": "neo",
+    "scryfall_id": "5564dc16-22f1-428a-8c49-ecc7de13d4a6",
+    "type_line": "Sorcery",
+    "mana_cost": "{1}{G}{G}{G}{G}",
+    "cmc": 5
+  },
+  "00007dfc0ffe0f1e180e700e781e7efc000001e83ffe3ffe3ffe3ffe00f80000": {
+    "name": "Geothermal Kami",
+    "set": "neo",
+    "scryfall_id": "559d7162-39fc-4d99-8c5f-b40a765b883a",
+    "type_line": "Creature — Spirit",
+    "mana_cost": "{3}{G}",
+    "cmc": 4
+  },
+  "01000ffc3f7e0f565e625036601e7b9e310000007ffe7ffe7ffe7ffe0e000000": {
+    "name": "Greasefang, Okiba Boss",
+    "set": "neo",
+    "scryfall_id": "56a0d43b-4d38-40a7-be6c-8324ab3bf773",
+    "type_line": "Legendary Creature — Rat Pilot",
+    "mana_cost": "{1}{W}{B}",
+    "cmc": 3
+  },
+  "00007ffe7e06647e661e761c743c3c1c000008187ffe7ffe3ffe3ffe01740000": {
+    "name": "Malicious Malfunction",
+    "set": "neo",
+    "scryfall_id": "56e7415f-f014-4ece-81db-d8271444d9e9",
+    "type_line": "Sorcery",
+    "mana_cost": "{1}{B}{B}",
+    "cmc": 3
+  },
+  "02c07ffe0ff00ce27c7fee7fc41810000000010c7ffe7ffe3ffe7ffe04e00000": {
+    "name": "Scrapyard Steelbreaker",
+    "set": "neo",
+    "scryfall_id": "5776e576-5562-45ea-a29b-185410317e17",
+    "type_line": "Artifact Creature — Human Warrior",
+    "mana_cost": "{3}{R}",
+    "cmc": 4
+  },
+  "7ffc7ffe00001e007f001c653f7c3c22000003c03ffe7ffe7ffe7ffe080c0000": {
+    "name": "Anchor to Reality",
+    "set": "neo",
+    "scryfall_id": "58141ad0-32ea-4e07-a133-ff7812d58c0e",
+    "type_line": "Sorcery",
+    "mana_cost": "{2}{U}{U}",
+    "cmc": 4
+  },
+  "9fff00009c1f8c1fe80ff078f078903e00003ffe1ffe0fc03ffe3ffe18380000": {
+    "name": "Tamiyo, Compleated Sage",
+    "set": "neo",
+    "scryfall_id": "5898a9c4-c983-4807-af06-18111702ab59",
+    "type_line": "Legendary Planeswalker — Tamiyo",
+    "mana_cost": "{2}{G}{G/U/P}{U}",
+    "cmc": 5
+  },
+  "00007ffe7e9e0f067c3e7d260ce6009e000003c07ffe3ffe3ffe7ffe10e00000": {
+    "name": "Kindled Fury",
+    "set": "neo",
+    "scryfall_id": "58c8bdce-73a3-4266-b3d6-61dbf4534ea3",
+    "type_line": "Instant",
+    "mana_cost": "{R}",
+    "cmc": 1
+  },
+  "000c7ffe00fe08fefbffe1f90371000000001ffc3ffe00fe02fe6dfe37fc0000": {
+    "name": "Rugged Highlands",
+    "set": "neo",
+    "scryfall_id": "58d511be-60e0-4755-abec-18eebb530605",
+    "type_line": "Land",
+    "mana_cost": "",
+    "cmc": 0
+  },
+  "00007ffe7ef87818780879d87f301e9c000000387ffe7ffe3ffc3fec0ff00000": {
+    "name": "Kami of Terrible Secrets",
+    "set": "neo",
+    "scryfall_id": "58f15af6-eaf5-41b8-b93d-5a90ca219478",
+    "type_line": "Creature — Spirit",
+    "mana_cost": "{3}{B}",
+    "cmc": 4
+  },
+  "00000fbc3ffe03fe7e7e7ffc38c02000000003807ffe7ffe7ffe7ffe001c0000": {
+    "name": "Invigorating Hot Spring",
+    "set": "neo",
+    "scryfall_id": "59a118d1-30b8-42c0-ac42-6fba0778200a",
+    "type_line": "Enchantment",
+    "mana_cost": "{1}{R}{G}",
+    "cmc": 3
+  },
+  "00007ffe3dc03ff03f619e618c7103f1011001007ffe7ffe7ffe3ffe00f00000": {
+    "name": "Network Disruptor",
+    "set": "neo",
+    "scryfall_id": "5a37719a-2a87-4870-8f25-12544ca2f2cf",
+    "type_line": "Artifact Creature — Moonfolk Rogue",
+    "mana_cost": "{U}",
+    "cmc": 1
+  },
+  "33f07ffe708033807dc7ffe1f0407000000001387ffe7fee7ffe5f7e0f800000": {
+    "name": "Hotshot Mechanic",
+    "set": "neo",
+    "scryfall_id": "5a70e8fa-b71d-441e-b049-dacb09a9a7af",
+    "type_line": "Artifact Creature — Fox Pilot",
+    "mana_cost": "{W}",
+    "cmc": 1
+  },
+  "00007ffe7c707e707f783ff03e403840000008307ffe7ffe3ffe7ffe041c0000": {
+    "name": "Assassin's Ink",
+    "set": "neo",
+    "scryfall_id": "5a926c10-029d-4e24-8c3f-1808025e30aa",
+    "type_line": "Instant",
+    "mana_cost": "{2}{B}{B}",
+    "cmc": 4
+  },
+  "29827ffe039e0e067e067f027fc078c0000003c07ffe3ffe1bfe34fe0ffc0000": {
+    "name": "Voltage Surge",
+    "set": "neo",
+    "scryfall_id": "5a9b7141-45b9-4629-a4e4-b50f93929717",
+    "type_line": "Instant",
+    "mana_cost": "{R}",
+    "cmc": 1
+  },
+  "7ffe7ffe400060007f837fc06ec16003000000987ffe7ffe57761ffe0ff80000": {
+    "name": "Spirited Companion",
+    "set": "neo",
+    "scryfall_id": "5aa91a9e-2fe2-43bc-aa9c-cfb8a71829ff",
+    "type_line": "Enchantment Creature — Dog",
+    "mana_cost": "{1}{W}",
+    "cmc": 2
+  },
+  "77ec7ffe0000199819d80ff807f037a2000000a47ffe7ffe1ffe7ffe03e00000": {
+    "name": "Go-Shintai of Ancient Wars",
+    "set": "neo",
+    "scryfall_id": "5b915e8d-b972-4ae1-a1c3-74d6623963c8",
+    "type_line": "Legendary Enchantment Creature — Shrine",
+    "mana_cost": "{2}{R}",
+    "cmc": 3
+  },
+  "00007ffe3f3e602e7ffe721e3a0e3000000006c03ffe7ffe3ffe7ffe32040000": {
+    "name": "Reality Heist",
+    "set": "neo",
+    "scryfall_id": "5bc954d7-322a-45b8-9e25-6e9a97fbde61",
+    "type_line": "Instant",
+    "mana_cost": "{5}{U}{U}",
+    "cmc": 7
+  },
+  "7ffe7ffe0000070087018f838f07f3a3000003c07ffe3ffe7ffe7ffe02c00000": {
+    "name": "Dragonspark Reactor",
+    "set": "neo",
+    "scryfall_id": "5cf531dd-0a93-43e3-880b-f705fa5f533d",
+    "type_line": "Artifact",
+    "mana_cost": "{1}{R}",
+    "cmc": 2
+  },
+  "37fc7ffe0c002e007f9063d13f880f82000003047ffe7ffe7ffe7ffe000e0000": {
+    "name": "Rabbit Battery",
+    "set": "neo",
+    "scryfall_id": "5d33a5b7-797b-4079-8d62-edd124c0fb5a",
+    "type_line": "Artifact Creature — Equipment Rabbit",
+    "mana_cost": "{R}",
+    "cmc": 1
+  },
+  "1fec7ffe000a02c604a7c20ff02bfb13f93bb271e8006fc07ffc7ff807860000": {
+    "name": "Ao, the Dawn Sky",
+    "set": "neo",
+    "scryfall_id": "5d7d1c2d-d3be-4647-a260-15ce85e69eea",
+    "type_line": "Legendary Creature — Dragon Spirit",
+    "mana_cost": "{3}{W}{W}",
+    "cmc": 5
+  },
+  "00007ffe778c7f047f007f9c1f807e807fc07ffe0000fc21fe7b7ff9800f0000": {
+    "name": "Silver-Fur Master",
+    "set": "neo",
+    "scryfall_id": "5d9a0771-072c-4b0c-afcb-15a6406473c6",
+    "type_line": "Creature — Rat Ninja",
+    "mana_cost": "{U}{B}",
+    "cmc": 2
+  },
+  "00007ffe1fe13be0fff5f9f8f8001000188000007ffe7ffe5ffe2ffe0e680000": {
+    "name": "Cloudsteel Kirin",
+    "set": "neo",
+    "scryfall_id": "5ea33e1d-fa3b-4179-9f94-74bc35cdf088",
+    "type_line": "Artifact Creature — Equipment Kirin",
+    "mana_cost": "{2}{W}",
+    "cmc": 3
+  },
+  "7ff87ffe7800080005e711ee38e07e1c000007403ffe7ffe3ffe1fde01fc0000": {
+    "name": "Spinning Wheel Kick",
+    "set": "neo",
+    "scryfall_id": "5f36ddd7-82c1-45ef-a966-ae2a34c540e1",
+    "type_line": "Sorcery",
+    "mana_cost": "{X}{X}{G}{G}",
+    "cmc": 2
+  },
+  "00005ffe07f03ff87ffec7fb01f00000000000f87ffc7dfe7ffe7ffe0e000000": {
+    "name": "Plains",
+    "set": "neo",
+    "scryfall_id": "5fc26aa1-58b9-41b5-95b4-7e9bf2309b54",
+    "type_line": "Basic Land — Plains",
+    "mana_cost": "",
+    "cmc": 0
+  },
+  "00000efc7ffc3f1c2f1c380e781e7c1e081c00003ffe7ffe2ffc7ffe00fc0000": {
+    "name": "Clawing Torment",
+    "set": "neo",
+    "scryfall_id": "621fce96-5933-4e2b-98ec-2589940e24cb",
+    "type_line": "Enchantment — Aura",
+    "mana_cost": "{B}",
+    "cmc": 1
+  },
+  "00003fc433fe5b7e61f7637e67c031800d8e7fac49007fc87fa87ff87fc00000": {
+    "name": "Shigeki, Jukai Visionary",
+    "set": "neo",
+    "scryfall_id": "62c303e5-a0af-4e42-afcc-1d3a81c78e8e",
+    "type_line": "Legendary Enchantment Creature — Snake Druid",
+    "mana_cost": "{1}{G}",
+    "cmc": 2
+  },
+  "0000117c7ffc7f1e7e1e3c7e007e003e000400187ffe7ffe7ffe7ffe06400000": {
+    "name": "Kami of Restless Shadows",
+    "set": "neo",
+    "scryfall_id": "62d3be4a-ab4f-46ef-837c-0f7559a701fe",
+    "type_line": "Creature — Spirit",
+    "mana_cost": "{4}{B}",
+    "cmc": 5
+  },
+  "00007ffe7c267f187c9a79ce007e007e000008187ffe7ffe7ffe7ffe004c0000": {
+    "name": "Upriser Renegade",
+    "set": "neo",
+    "scryfall_id": "62d878c2-a340-4751-adaa-e50b0bb85423",
+    "type_line": "Creature — Human Samurai",
+    "mana_cost": "{1}{R}",
+    "cmc": 2
+  },
+  "00007ebe1dbe6ef031006f607fe07f267f7870bc00007ff87ffc7c007f7e0000": {
+    "name": "Invoke Despair",
+    "set": "neo",
+    "scryfall_id": "62e4edbd-4a7c-435b-b7c0-f9cfdd3dff68",
+    "type_line": "Sorcery",
+    "mana_cost": "{1}{B}{B}{B}{B}",
+    "cmc": 5
+  },
+  "1bd47f7e7c007808f9fdc139c0e1c1810000010c7ffe7ffe3ffe33fe07f00000": {
+    "name": "Undercity Scrounger",
+    "set": "neo",
+    "scryfall_id": "6319b84b-8a3d-4bc8-af48-8b500f124be1",
+    "type_line": "Artifact Creature — Human Rogue",
+    "mana_cost": "{2}{B}",
+    "cmc": 3
+  },
+  "4fbe7ffe03e001002ff413f813e903e0000008187ffe7ffe7ffe3ffe022c0000": {
+    "name": "Reckoner's Bargain",
+    "set": "neo",
+    "scryfall_id": "6338942d-d650-4571-8ec6-4d658792c53e",
+    "type_line": "Instant",
+    "mana_cost": "{1}{B}",
+    "cmc": 2
+  },
+  "000007c07ffc7fde7f047e407c447ccc7c1070047e0e7ff876fe7ffc01ce0000": {
+    "name": "March of Swirling Mist",
+    "set": "neo",
+    "scryfall_id": "633a8eac-82c7-4e02-bff5-1e1095b781ef",
+    "type_line": "Instant",
+    "mana_cost": "{X}{U}",
+    "cmc": 1
+  },
+  "03c07ffefe03c009f41ff81fc833c003800500007ffe7ffe7ffe7ffe00700000": {
+    "name": "Satoru Umezawa",
+    "set": "neo",
+    "scryfall_id": "63fb4d0a-f979-42ed-a4aa-15c180e4f0be",
+    "type_line": "Legendary Creature — Human Ninja",
+    "mana_cost": "{1}{U}{B}",
+    "cmc": 3
+  },
+  "00007ffe13fc06fc03e0007c0e7e7e7e1e0e7ffc00f001fc3ffc37fc01fe0000": {
+    "name": "Risona, Asari Commander",
+    "set": "neo",
+    "scryfall_id": "64a3d9fd-4023-4f64-b31c-8dab1eec8566",
+    "type_line": "Legendary Creature — Human Samurai",
+    "mana_cost": "{1}{R}{W}",
+    "cmc": 3
+  },
+  "00007ffe09f80ffa5be04fd84fc807a8000007f81f8e7ffe5ffe7ffe003c0000": {
+    "name": "Brilliant Restoration",
+    "set": "neo",
+    "scryfall_id": "64f7a506-0aa1-4c2d-b322-e0e9179d05fb",
+    "type_line": "Sorcery",
+    "mana_cost": "{3}{W}{W}{W}{W}",
+    "cmc": 7
+  },
+  "000043f87ff07ff87ffc7d7c0374000800001f807ffc4ffe5fbe7ffc3f000000": {
+    "name": "Tranquil Cove",
+    "set": "neo",
+    "scryfall_id": "68f822b7-efc5-42c8-93ea-7dd17b4c3e7a",
+    "type_line": "Land",
+    "mana_cost": "",
+    "cmc": 0
+  },
+  "23c07ffe11a06fa01fb038f82ff003f0000001247ffe7ffe3f7e7ffe00dc0000": {
+    "name": "Go-Shintai of Boundless Vigor",
+    "set": "neo",
+    "scryfall_id": "691016a1-8630-423c-9a57-061593d170fd",
+    "type_line": "Legendary Enchantment Creature — Shrine",
+    "mana_cost": "{1}{G}",
+    "cmc": 2
+  },
+  "3ff47ffe000003f0cb7ad682cca29b82000001387ffe5ffe547e7ffe3e700000": {
+    "name": "A-Circuit Mender",
+    "set": "neo",
+    "scryfall_id": "6a93c43b-0604-47fa-ae4e-4f72d342acf9",
+    "type_line": "Artifact Creature — Insect",
+    "mana_cost": "{3}",
+    "cmc": 3
+  },
+  "00007ffe3fee180e780e604e1fce63c6000005a03ffe7ffe3ffe3ffe00ec0000": {
+    "name": "Thirst for Knowledge",
+    "set": "neo",
+    "scryfall_id": "6b927837-8252-4ea7-b2d0-ab624de65bd7",
+    "type_line": "Instant",
+    "mana_cost": "{2}{U}",
+    "cmc": 3
+  },
+  "00007ff631fc4f8e5f9e443c3c087dc47cd67ffe038023207ff873007ffe0000": {
+    "name": "Eiganjo Exemplar",
+    "set": "neo",
+    "scryfall_id": "6c85917c-60ea-44d3-8483-fa639564e881",
+    "type_line": "Enchantment Creature — Human Samurai",
+    "mana_cost": "{1}{W}",
+    "cmc": 2
+  },
+  "0480ffef0fc03eb07c38fe80ff00fe00ffc0ffc60000cfc1ffff0858c3cf0002": {
+    "name": "Dokuchi Shadow-Walker",
+    "set": "neo",
+    "scryfall_id": "6d35bcc7-2280-4061-9a6c-e67038cfb114",
+    "type_line": "Creature — Ogre Ninja",
+    "mana_cost": "{4}{B}{B}",
+    "cmc": 6
+  },
+  "07987ffe041e007e71fe71a2053e03e200000ff87ffe02fe7ffe7ffe07000000": {
+    "name": "When We Were Young",
+    "set": "neo",
+    "scryfall_id": "6db14cb8-9ff8-41ee-a733-4f1130e73b29",
+    "type_line": "Instant",
+    "mana_cost": "{3}{W}",
+    "cmc": 4
+  },
+  "00007ffc17f00ffc3f7e187c147c19c0000000687ffe7ffe3ffe3ffe007c0000": {
+    "name": "Coiling Stalker",
+    "set": "neo",
+    "scryfall_id": "6eba24f6-8a9c-4398-b2ab-3924b107c7b7",
+    "type_line": "Creature — Snake Ninja",
+    "mana_cost": "{1}{G}",
+    "cmc": 2
+  }
+}

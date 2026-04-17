@@ -1,0 +1,434 @@
+/* SpellTable Pro+ - Responsive Styles */
+
+/* Mobile devices (phones) */
+@media screen and (max-width: 640px) {
+    /* Header */
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .main-nav {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .nav-link {
+        padding: 0.5rem;
+        font-size: 0.875rem;
+    }
+
+    .header-actions {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Main content */
+    .app-main {
+        padding: 1rem 0;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    /* Sections */
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .session-info {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .game-controls {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    /* Video grid — stack on mobile regardless of player count */
+    .video-grid,
+    .video-grid[data-players="2"],
+    .video-grid[data-players="3"],
+    .video-grid[data-players="4"],
+    .video-grid[data-players="5"],
+    .video-grid[data-players="6"] {
+        grid-template-columns: 1fr !important;
+    }
+
+    .video-container {
+        margin-bottom: 1rem;
+    }
+
+    /* Play table — stack on mobile */
+    .play-table,
+    .play-table[data-players="2"],
+    .play-table[data-players="3"],
+    .play-table[data-players="4"],
+    .play-table[data-players="5"],
+    .play-table[data-players="6"] {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Life totals bar — stack vertically */
+    .life-totals-bar {
+        flex-direction: column;
+    }
+
+    .life-widget {
+        min-width: 100%;
+    }
+
+    /* Player setup */
+    .player-setup-bar {
+        flex-wrap: wrap;
+    }
+
+    .board-slots {
+        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    }
+
+    /* AI section */
+    .ai-content {
+        grid-template-columns: 1fr;
+    }
+
+    /* Welcome overlay */
+    .welcome-content h1 {
+        font-size: 2rem;
+    }
+
+    .welcome-content p {
+        font-size: 1rem;
+    }
+
+    .welcome-features {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    /* Modal */
+    .modal-content {
+        width: 95%;
+        max-height: 95vh;
+    }
+
+    .modal-body {
+        padding: 1rem;
+    }
+
+    .theme-options {
+        flex-direction: column;
+    }
+
+    .modal-footer {
+        flex-direction: column-reverse;
+        gap: 0.5rem;
+    }
+
+    .modal-footer .btn {
+        width: 100%;
+    }
+
+    /* Buttons */
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .btn-sm {
+        width: 100%;
+    }
+
+    /* Inputs */
+    .life-input {
+        width: 50px;
+    }
+}
+
+/* Tablets (portrait and landscape) */
+@media screen and (min-width: 641px) and (max-width: 1024px) {
+    /* Header */
+    .logo h1 {
+        font-size: 1.25rem;
+    }
+
+    .main-nav {
+        gap: 0.5rem;
+    }
+
+    .nav-link {
+        padding: 0.5rem 0.75rem;
+    }
+
+    /* Main content */
+    .app-main {
+        padding: 1.5rem 0;
+    }
+
+    /* Sections */
+    .section-header h2 {
+        font-size: 1.125rem;
+    }
+
+    /* Video grid — 2 columns max on tablet */
+    .video-grid,
+    .video-grid[data-players="2"],
+    .video-grid[data-players="3"],
+    .video-grid[data-players="4"],
+    .video-grid[data-players="5"],
+    .video-grid[data-players="6"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1rem;
+    }
+
+    /* Play table — 2 columns max on tablet */
+    .play-table,
+    .play-table[data-players="2"],
+    .play-table[data-players="3"],
+    .play-table[data-players="4"],
+    .play-table[data-players="5"],
+    .play-table[data-players="6"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1rem;
+    }
+
+    .table-area {
+        padding: 1.25rem;
+    }
+
+    .board-slots {
+        grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+    }
+
+    /* AI section */
+    .ai-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .ai-preview {
+        grid-column: span 2;
+    }
+
+    /* Welcome overlay */
+    .welcome-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .welcome-features {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Modal */
+    .modal-content {
+        width: 85%;
+    }
+}
+
+/* Desktop (large screens) — data-players attributes in styles.css handle grid columns */
+@media screen and (min-width: 1025px) {
+
+    .ai-content {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .ai-preview {
+        grid-column: span 1;
+    }
+
+    .welcome-features {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Extra large screens */
+@media screen and (min-width: 1440px) {
+    .container {
+        max-width: 1600px;
+    }
+
+    .video-grid {
+        gap: 1.5rem;
+    }
+
+    .play-table {
+        gap: 1.5rem;
+    }
+
+    .ai-content {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+}
+
+/* Landscape tablets */
+@media screen and (orientation: landscape) and (max-width: 1024px) {
+    .play-table {
+        gap: 1rem;
+    }
+}
+
+/* Portrait tablets */
+@media screen and (orientation: portrait) and (max-width: 1024px) {
+    .play-table,
+    .play-table[data-players="2"],
+    .play-table[data-players="3"],
+    .play-table[data-players="4"],
+    .play-table[data-players="5"],
+    .play-table[data-players="6"] {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .card-slot,
+    .board-slot {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Dark mode preference */
+@media (prefers-color-scheme: dark) {
+    /* No default dark mode - user controlled */
+}
+
+/* Print media queries */
+@media print {
+    .app-header,
+    .header-actions,
+    .video-controls,
+    .modal,
+    .welcome-overlay {
+        display: none !important;
+    }
+
+    .play-table {
+        flex-direction: column;
+    }
+
+    .table-area {
+        page-break-inside: avoid;
+    }
+
+    .video-section,
+    .ai-section {
+        display: none;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Touch device optimization */
+@media (pointer: coarse) {
+    .btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    .card-slot,
+    .board-slot {
+        touch-action: manipulation;
+    }
+
+    .modal-content {
+        touch-action: pan-y;
+    }
+}
+
+/* Smart TV / Large screen optimization */
+@media (min-width: 1920px) {
+    .app-header {
+        padding: 0 2rem;
+    }
+
+    .video-placeholder {
+        border-radius: var(--radius-xl);
+    }
+
+    .welcome-content h1 {
+        font-size: 4rem;
+    }
+}
+
+/* Sidebar navigation (future enhancement) */
+@media (min-width: 768px) {
+    /* Can add sidebar navigation for larger screens */
+}
+
+/* Hide scrollbars on touch devices */
+@media (hover: none) and (pointer: coarse) {
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--text-tertiary);
+        border-radius: 3px;
+    }
+}
+
+/* Focus visible for accessibility */
+@media (prefers-contrast: more) {
+    .btn:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+        outline: 3px solid var(--primary-color);
+        outline-offset: 2px;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: more) {
+    :root {
+        --primary-color: #0000ff;
+        --bg-primary: #ffffff;
+        --bg-secondary: #f5f5f5;
+        --text-primary: #000000;
+        --text-secondary: #333333;
+        --border-color: #000000;
+    }
+
+    .btn-primary {
+        background-color: #0000ff;
+        color: #ffffff;
+    }
+
+    .card-slot,
+    .board-slot {
+        border-width: 3px;
+        border-color: #000000;
+    }
+
+    .card-slot.filled,
+    .board-slot.filled {
+        background-color: #e6f0ff;
+        border-color: #0000ff;
+    }
+}

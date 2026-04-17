@@ -1,0 +1,306 @@
+/* SpellTable Pro+ - Dark Theme */
+
+:root {
+    --primary-color: #818cf8;
+    --secondary-color: #a78bfa;
+    --success-color: #34d399;
+    --danger-color: #f87171;
+    --warning-color: #fbbf24;
+    --info-color: #60a5fa;
+    
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-tertiary: #334155;
+    
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-tertiary: #94a3b8;
+    
+    --border-color: #475569;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+}
+
+/* Dark theme overrides */
+body.dark-theme,
+body[style*="background-color: rgb(15, 23, 42)"],
+body[style*="background-color: rgb(30, 41, 59)"] {
+    --bg-primary: #0f172a !important;
+    --bg-secondary: #1e293b !important;
+    --bg-tertiary: #334155 !important;
+    --text-primary: #f8fafc !important;
+    --text-secondary: #cbd5e1 !important;
+    --text-tertiary: #94a3b8 !important;
+    --border-color: #475569 !important;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3) !important;
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4) !important;
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Header */
+.app-header {
+    background-color: var(--bg-primary);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Cards and sections */
+.video-container,
+.table-area,
+.ai-content,
+.modal-content {
+    background-color: var(--bg-primary);
+}
+
+.video-placeholder {
+    background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary));
+}
+
+/* Input fields */
+.life-input {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.life-input:focus {
+    border-color: var(--primary-color);
+}
+
+/* Slots */
+.board-slots,
+.hand {
+    background-color: var(--bg-secondary);
+}
+
+.board-slot,
+.board-slot.empty,
+.card-slot,
+.card-slot.empty {
+    background-color: var(--bg-tertiary);
+    border-color: var(--border-color);
+}
+
+.board-slot:hover,
+.board-slot.empty:hover,
+.card-slot:hover,
+.card-slot.empty:hover {
+    border-color: var(--primary-color);
+    background-color: #1e293b;
+}
+
+.board-slot.filled,
+.card-slot.filled {
+    border-color: var(--primary-color);
+    background-color: #1e1b4e;
+}
+
+/* Status badges */
+.status-badge.online,
+.status-badge.ready {
+    background-color: #064e3b;
+    color: #6ee7b7;
+}
+
+.status-badge.offline {
+    background-color: #451a1a;
+    color: #fca5a5;
+}
+
+/* Detection results */
+.detection-item {
+    background-color: var(--bg-secondary);
+}
+
+.analysis-item {
+    background-color: var(--bg-secondary);
+}
+
+.analysis-label {
+    color: var(--text-secondary);
+}
+
+.analysis-value {
+    color: var(--text-primary);
+}
+
+/* Modal */
+.modal {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Welcome overlay dark variant */
+body.dark-theme .welcome-overlay {
+    background: linear-gradient(135deg, #1e1b4e 0%, #312e81 100%);
+}
+
+body.dark-theme .welcome-content {
+    color: #f8fafc;
+}
+
+body.dark-theme .welcome-content p {
+    color: #cbd5e1;
+}
+
+body.dark-theme .feature {
+    background-color: rgba(51, 65, 85, 0.5);
+}
+
+body.dark-theme .theme-btn {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+body.dark-theme .theme-btn:hover,
+body.dark-theme .theme-btn.active {
+    background-color: var(--bg-tertiary);
+    border-color: var(--primary-color);
+}
+
+body.dark-theme .theme-btn[data-theme="dark"] {
+    border-color: var(--primary-color);
+    background-color: #1e1b4e;
+}
+
+/* Scrollbar dark */
+body.dark-theme ::-webkit-scrollbar-track {
+    background: var(--bg-tertiary);
+}
+
+body.dark-theme ::-webkit-scrollbar-thumb {
+    background: var(--text-tertiary);
+}
+
+body.dark-theme ::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}
+
+/* Focus states dark */
+body.dark-theme .btn:focus,
+body.dark-theme input:focus,
+body.dark-theme select:focus,
+body.dark-theme textarea:focus {
+    outline-color: var(--primary-color);
+}
+
+/* Text contrast adjustments */
+body.dark-theme .video-placeholder h3,
+body.dark-theme .video-placeholder p,
+body.dark-theme .preview-placeholder h4,
+body.dark-theme .preview-placeholder p {
+    color: var(--text-secondary);
+}
+
+body.dark-theme .nav-link {
+    color: var(--text-secondary);
+}
+
+body.dark-theme .nav-link:hover,
+body.dark-theme .nav-link.active {
+    color: var(--primary-color);
+    background-color: var(--bg-tertiary);
+}
+
+/* Section headers */
+body.dark-theme .section-header {
+    border-bottom-color: var(--border-color);
+}
+
+body.dark-theme .section-header h2 {
+    color: var(--text-primary);
+}
+
+body.dark-theme .session-id {
+    color: var(--text-secondary);
+}
+
+/* Table areas */
+body.dark-theme .table-area h3,
+body.dark-theme .table-area h4 {
+    color: var(--text-primary);
+}
+
+body.dark-theme .library h4,
+body.dark-theme .graveyard h4 {
+    color: var(--text-secondary);
+}
+
+body.dark-theme .library-count,
+body.dark-theme .graveyard-count {
+    color: var(--text-secondary);
+}
+
+body.dark-theme .game-controls {
+    color: var(--text-primary);
+}
+
+body.dark-theme .life-total label,
+body.dark-theme .turn-counter label {
+    color: var(--text-secondary);
+}
+
+/* Buttons dark */
+body.dark-theme .btn-secondary {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+body.dark-theme .btn-secondary:hover {
+    background-color: var(--bg-tertiary);
+}
+
+body.dark-theme .btn-icon {
+    color: var(--text-secondary);
+}
+
+body.dark-theme .btn-icon:hover {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+/* Shortcuts */
+body.dark-theme kbd {
+    background-color: var(--bg-tertiary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+/* Modal dark */
+body.dark-theme .modal-header {
+    border-bottom-color: var(--border-color);
+}
+
+body.dark-theme .modal-footer {
+    border-top-color: var(--border-color);
+}
+
+body.dark-theme .theme-btn[data-theme="light"] {
+    border-color: var(--primary-color);
+    background-color: #1e1b4e;
+}
+
+/* Welcome content dark */
+body.dark-theme .feature h3 {
+    color: #f8fafc;
+}
+
+body.dark-theme .feature p {
+    color: #cbd5e1;
+}
+
+/* Animations dark */
+body.dark-theme .animate-fade-in {
+    color: var(--text-primary);
+}
+
+/* Print styles dark */
+@media print {
+    body.dark-theme .app-header,
+    body.dark-theme .header-actions,
+    body.dark-theme .video-controls,
+    body.dark-theme .modal,
+    body.dark-theme .welcome-overlay {
+        display: none;
+    }
+}

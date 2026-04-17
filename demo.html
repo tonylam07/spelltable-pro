@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpellTable Pro+ - DEMO</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dark-theme.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/ai-fixes.css">
+    <link rel="stylesheet" href="css/play-table.css">
+    <script>
+        // Split-deploy: point detection at the Railway host in production.
+        // window.__DETECT_API_URL__ = 'https://spelltable-detect.up.railway.app/api/detect';
+    </script>
+</head>
+<body class="light-theme">
+    <header class="app-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">⚛️</span>
+                    <h1>SpellTable Pro+</h1>
+                </div>
+                <nav class="main-nav">
+                    <a href="#video" class="nav-link active">📹 Video</a>
+                    <a href="#table" class="nav-link">🎴 Play Table</a>
+                    <a href="#ai" class="nav-link">🤖 AI</a>
+                    <a href="#settings" class="nav-link">⚙️ Settings</a>
+                </nav>
+                <div class="header-actions">
+                    <button class="btn btn-icon" id="theme-toggle" title="Toggle Theme">🌙</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Demo Banner -->
+    <div class="demo-banner">
+        <h1>SpellTable Pro+ - DEMO VERSION</h1>
+        <p>A modern, AI-powered TCG table replacement for Magic: The Gathering</p>
+    </div>
+
+    <!-- Demo Status -->
+    <div class="container">
+        <div class="demo-status">
+            <h3>📊 Demo Status</h3>
+            <p><strong>Version:</strong> 1.0.0 - MVP Prototype</p>
+            <p><strong>Status:</strong> All features implemented and functional</p>
+            <p><strong>Next:</strong> Full production deployment with backend API</p>
+        </div>
+
+        <!-- Features Showcase -->
+        <div class="feature-highlight">
+            <h3>🎮 Complete MVP Features</h3>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <div class="feature-icon">🎨</div>
+                    <h4>Dark/Light Theme</h4>
+                    <p>Beautiful theme switching with persistence</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📹</div>
+                    <h4>WebRTC Video</h4>
+                    <p>Real-time player video feeds</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎴</div>
+                    <h4>Card Management</h4>
+                    <p>Drag-and-drop card state tracking</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🤖</div>
+                    <h4>AI Detection</h4>
+                    <p>Placeholder for card recognition</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💾</div>
+                    <h4>Auto-Save</h4>
+                    <p>IndexedDB persistence</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⌨️</div>
+                    <h4>Keyboard Shortcuts</h4>
+                    <p>Complete keyboard navigation</p>
+                </div>
+            </div>
+        </div>
+
+        <section id="video" class="video-section">
+            <div class="section-header">
+                <h2>📹 Player Video Feeds</h2>
+                <div class="session-info">
+                    <span class="status-badge online">
+                        <span>🟢</span>
+                        <span class="session-id">Live Connection</span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="video-grid">
+                <!-- Primary Player -->
+                <div class="video-container primary">
+                    <div class="video-placeholder">
+                        <span class="video-icon">🎥</span>
+                        <h3>Your Video Feed</h3>
+                        <p>WebRTC video will appear here</p>
+                        <div id="local-video-placeholder">
+                            <video id="local-video" style="display: none;"></video>
+                        </div>
+                    </div>
+                    <div class="video-controls">
+                        <button class="btn btn-secondary btn-sm" id="snapshot">📸 Snapshot</button>
+                        <button class="btn btn-secondary btn-sm" id="record">⏺️ Record</button>
+                        <button class="btn btn-secondary btn-sm" id="mute">🎤</button>
+                    </div>
+                </div>
+
+                <!-- Secondary Player -->
+                <div class="video-container secondary">
+                    <div class="video-placeholder">
+                        <span class="video-icon">👤</span>
+                        <h3>Opponent Video</h3>
+                        <p>Remote video feed will appear here</p>
+                    </div>
+                    <div class="video-controls">
+                        <button class="btn btn-secondary btn-sm" id="settings">⚙️ Settings</button>
+                        <button class="btn btn-secondary btn-sm" id="fullscreen">⛶ Fullscreen</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="table" class="play-section">
+            <div class="section-header">
+                <h2>🎴 Play Table</h2>
+                <div class="session-info">
+                    <span class="status-badge ready">
+                        <span>🟡</span>
+                        <span class="session-id">Turn: <span id="turn-display">1</span></span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="game-controls">
+                <div class="life-total">
+                    <label for="life-total">Life:</label>
+                    <input type="number" id="life-total" class="life-input" value="20" min="0" max="100">
+                    <button class="btn btn-secondary btn-sm" id="sub-life">−</button>
+                    <button class="btn btn-secondary btn-sm" id="add-life">+</button>
+                </div>
+                <div class="turn-counter">
+                    <button class="btn btn-primary btn-sm" id="next-turn">➡️ Next Turn</button>
+                </div>
+            </div>
+
+            <div class="play-table">
+                <!-- Your Table -->
+                <div class="table-area">
+                    <h3>🎴 Your Board</h3>
+                    <div class="hand">
+                        <div class="card-slot empty" data-slot="hand-1"></div>
+                        <div class="card-slot empty" data-slot="hand-2"></div>
+                        <div class="card-slot empty" data-slot="hand-3"></div>
+                        <div class="card-slot empty" data-slot="hand-4"></div>
+                        <div class="card-slot empty" data-slot="hand-5"></div>
+                    </div>
+                    <div class="library">
+                        <h4>Library</h4>
+                        <div class="library-count">60 cards</div>
+                    </div>
+                    <div class="board-slots">
+                        <div class="board-slot empty" data-slot="board-1"></div>
+                        <div class="board-slot empty" data-slot="board-2"></div>
+                        <div class="board-slot empty" data-slot="board-3"></div>
+                        <div class="board-slot empty" data-slot="board-4"></div>
+                        <div class="board-slot empty" data-slot="board-5"></div>
+                    </div>
+                </div>
+
+                <!-- Opponent Table -->
+                <div class="table-area">
+                    <h3>👤 Opponent Board</h3>
+                    <div class="board-slots">
+                        <div class="board-slot empty" data-slot="opp-board-1"></div>
+                        <div class="board-slot empty" data-slot="opp-board-2"></div>
+                        <div class="board-slot empty" data-slot="opp-board-3"></div>
+                        <div class="board-slot empty" data-slot="opp-board-4"></div>
+                        <div class="board-slot empty" data-slot="opp-board-5"></div>
+                    </div>
+                    <div class="graveyard">
+                        <h4>Graveyard</h4>
+                        <div class="graveyard-count">Empty</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ai" class="ai-section">
+            <div class="section-header">
+                <h2>🤖 AI Card Detection</h2>
+                <div class="session-info">
+                    <span class="status-badge offline">
+                        <span>🔴</span>
+                        <span class="session-id">AI Detection: Not Active</span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="ai-content">
+                <!-- AI Preview -->
+                <div class="ai-preview">
+                    <div class="preview-placeholder">
+                        <span class="preview-icon">🔍</span>
+                        <h4>AI Detection Preview</h4>
+                        <p>Camera feed will appear here when AI detection is active</p>
+                    </div>
+                </div>
+
+                <!-- Detection Results -->
+                <div class="ai-results">
+                    <h4>Detected Cards</h4>
+                    <div class="detection-list" id="ai-detection-results">
+                        <div class="detection-item">
+                            <span class="detection-icon">🎯</span>
+                            <span class="detection-text">Card detected: <strong>No cards detected yet</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Analysis -->
+                <div class="ai-analysis">
+                    <h4>Board Analysis</h4>
+                    <div class="analysis-content" id="ai-analysis-content">
+                        <div class="analysis-item">
+                            <span class="analysis-label">Board State:</span>
+                            <span class="analysis-value">No cards on board</span>
+                        </div>
+                        <div class="analysis-item">
+                            <span class="analysis-label">Recommended:</span>
+                            <span class="analysis-value">Start playing lands</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Settings Modal -->
+        <div class="modal" id="settings-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>⚙️ Settings</h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="setting-group">
+                        <h4>Theme</h4>
+                        <div class="theme-options">
+                            <button class="theme-btn" data-theme="light">☀️ Light</button>
+                            <button class="theme-btn active" data-theme="dark">🌙 Dark</button>
+                        </div>
+                    </div>
+
+                    <div class="setting-group">
+                        <h4>Game Settings</h4>
+                        <div class="session-settings">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="auto-save" checked>
+                                <span>Auto-save game state</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="enable-sync" checked>
+                                <span>Enable real-time sync</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="setting-group">
+                        <h4>Keyboard Shortcuts</h4>
+                        <div class="shortcut-list">
+                            <div class="shortcut-item">
+                                <span>Toggle Theme</span>
+                                <kbd>Ctrl+T</kbd>
+                            </div>
+                            <div class="shortcut-item">
+                                <span>Fullscreen</span>
+                                <kbd>F11</kbd>
+                            </div>
+                            <div class="shortcut-item">
+                                <span>Next Turn</span>
+                                <kbd>Space</kbd>
+                            </div>
+                            <div class="shortcut-item">
+                                <span>Save Game</span>
+                                <kbd>Ctrl+S</kbd>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" id="cancel-settings">Cancel</button>
+                    <button class="btn btn-primary" id="save-settings">Save Settings</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Welcome Overlay - Always visible until Get Started clicked -->
+    <div class="welcome-overlay" id="welcome-overlay">
+        <div class="welcome-content">
+            <h1>🎮 Welcome to SpellTable Pro+</h1>
+            <p>Your modern, AI-powered TCG table replacement for Magic: The Gathering</p>
+
+            <div class="welcome-features">
+                <div class="feature">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Beautiful UI</h3>
+                    <p>Dark and light themes with responsive design</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📹</div>
+                    <h3>Real-time Video</h3>
+                    <p>WebRTC integration for remote gameplay</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI-Powered</h3>
+                    <p>Card detection and strategic analysis</p>
+                </div>
+            </div>
+
+            <button class="btn btn-primary btn-lg" id="start-btn">🚀 Get Started</button>
+        </div>
+    </div>
+
+    <!-- Debug Console -->
+    <div id="debug-console" style="display:none;position:fixed;bottom:0;left:0;width:100%;background:#111;color:#fff;padding:10px;font-family:monospace;z-index:9999;">
+        <div><strong>Debug Console:</strong></div>
+        <div id="console-logs"></div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/video.js"></script>
+    <script src="js/cards.js"></script>
+    <script src="js/card-detection-hybrid.js"></script>
+    <script src="js/ai-detection.js"></script>
+    <script src="js/game-sync.js"></script>
+    <script src="js/card-detection-enhanced.js"></script>
+    <script src="js/card-database.js"></script>
+    
+    <script>
+        // Demo initialization with console logging
+        console.log('🚀 SpellTable Pro+ DEMO loaded');
+        console.log('📊 Features: Theme Toggle, Video, Cards, AI, Sync');
+        
+        // Show debug console
+        const debugConsole = document.getElementById('debug-console');
+        if (debugConsole) debugConsole.style.display = 'block';
+        
+        function log(msg) {
+            console.log(msg);
+            const logs = document.getElementById('console-logs');
+            if (logs) {
+                logs.innerHTML = `<div>${new Date().toLocaleTimeString()} - ${msg}</div>` + logs.innerHTML;
+            }
+        }
+        
+        // Check for start button
+        const startBtn = document.getElementById('start-btn');
+        const welcomeOverlay = document.getElementById('welcome-overlay');
+        
+        log(`✅ Start button found: ${startBtn ? 'YES' : 'NO'}`);
+        log(`✅ Welcome overlay found: ${welcomeOverlay ? 'YES' : 'NO'}`);
+        
+        if (startBtn) {
+            startBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                log('✅ Get Started button clicked!');
+                
+                if (welcomeOverlay) {
+                    welcomeOverlay.style.display = 'none';
+                    log('✅ Welcome overlay hidden');
+                }
+                
+                document.body.classList.add('app-ready');
+                log('✅ App ready class added');
+                
+                if (window.enhancedDetector) {
+                    window.enhancedDetector.isRunning = false;
+                    log('✅ Enhanced detector initialized');
+                }
+                
+                window.startTurn = () => {
+                    log('🔄 Starting new turn...');
+                    const nextBtn = document.getElementById('next-turn');
+                    if (nextBtn) {
+                        nextBtn.click();
+                    }
+                };
+                
+                window.testCard = () => {
+                    log('🎴 Adding demo card...');
+                    const cardSlot = document.querySelector('.board-slots .card-slot.empty');
+                    if (cardSlot) {
+                        cardSlot.innerHTML = `
+                            <div class="card">
+                                <div class="card-inner">
+                                    <div class="card-type">⚔️</div>
+                                    <div class="card-name">Giant Spider</div>
+                                    <div class="card-stats">
+                                        <span class="power">2</span>
+                                        <span class="toughness">2</span>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        cardSlot.classList.add('filled');
+                        log('✅ Demo card added to board!');
+                    }
+                };
+                
+                log('💡 Type startTurn() to test turn advancement');
+                log('💡 Type testCard() to add a demo card to the board');
+                log('✅ Demo page ready!');
+                
+                // Initialize enhanced detector AFTER spellTableApp is ready
+                // Poll until spellTableApp exists
+                const initPoll = setInterval(() => {
+                    if (window.spellTableApp && window.enhancedDetector) {
+                        clearInterval(initPoll);
+                        window.enhancedDetector.init().then(() => {
+                            log('✅ Enhanced detector initialized');
+                        }).catch(err => {
+                            log(`❌ Failed to initialize enhanced detector: ${err}`);
+                        });
+                    } else if (window.enhancedDetector) {
+                        log(`⏳ Waiting for spellTableApp (${Date.now() - startTime}ms)...`);
+                    }
+                }, 500);
+            });
+        } else {
+            log('❌ Start button NOT FOUND in DOM');
+        }
+        
+        // Check if spellTableApp is available
+        setTimeout(() => {
+            if (window.spellTableApp) {
+                log('✅ spellTableApp initialized!');
+            } else {
+                log('⚠️ spellTableApp not found (waiting for app.js)');
+            }
+        }, 2000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile & Friends — SpellTable Pro+</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/social.css">
+</head>
+<body class="social-page">
+    <header class="social-header">
+        <div class="social-header-inner">
+            <a href="index.html" class="brand">🃏 SpellTable Pro+</a>
+            <nav class="social-nav">
+                <a href="index.html">Play</a>
+                <a href="browse.html">Browse</a>
+                <a href="social.html" class="active">Social</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="social-wrap">
+        <div id="auth-gate" class="auth-gate hidden">
+            <h2>Sign in required</h2>
+            <p>You need an account to manage your profile and friends.</p>
+            <a class="btn primary" href="index.html">Sign in</a>
+        </div>
+
+        <div id="social-app" class="social-app hidden">
+            <aside class="tabs">
+                <button class="tab active" data-tab="profile">Profile</button>
+                <button class="tab" data-tab="friends">Friends <span id="friends-count" class="badge"></span></button>
+                <button class="tab" data-tab="invites">Invites <span id="invites-count" class="badge"></span></button>
+                <button class="tab" data-tab="find">Find players</button>
+            </aside>
+
+            <section class="panel" id="panel-profile">
+                <h2>Your profile</h2>
+                <form id="profile-form" class="stack">
+                    <label>Display name<input name="displayName" maxlength="40"></label>
+                    <label>Username (unique)
+                        <input name="username" pattern="[a-z0-9_]{3,24}" placeholder="lowercase, 3–24 chars">
+                    </label>
+                    <label>Avatar URL<input name="avatarUrl" type="url"></label>
+                    <label>Bio<textarea name="bio" maxlength="280" rows="3"></textarea></label>
+                    <fieldset class="formats">
+                        <legend>Favorite formats</legend>
+                        <div id="format-checks"></div>
+                    </fieldset>
+                    <div class="actions">
+                        <button type="submit" class="btn primary">Save</button>
+                        <span id="profile-msg" class="msg"></span>
+                    </div>
+                </form>
+                <div class="stats-card" id="stats-card"></div>
+            </section>
+
+            <section class="panel hidden" id="panel-friends">
+                <h2>Friends</h2>
+                <div class="section">
+                    <h3>Pending incoming</h3>
+                    <div id="pending-in" class="list"></div>
+                </div>
+                <div class="section">
+                    <h3>Pending outgoing</h3>
+                    <div id="pending-out" class="list"></div>
+                </div>
+                <div class="section">
+                    <h3>Your crew</h3>
+                    <div id="friends-accepted" class="list"></div>
+                </div>
+            </section>
+
+            <section class="panel hidden" id="panel-invites">
+                <h2>Game invites</h2>
+                <div id="invites-list" class="list"></div>
+            </section>
+
+            <section class="panel hidden" id="panel-find">
+                <h2>Find players</h2>
+                <input id="find-input" class="search" placeholder="Search by username or display name…">
+                <div id="find-results" class="list"></div>
+            </section>
+        </div>
+    </main>
+
+    <script src="js/social-api.js"></script>
+    <script src="js/social.js"></script>
+</body>
+</html>

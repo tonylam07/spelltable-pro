@@ -1,0 +1,265 @@
+/* ============================================================
+   Play Table — modern SpellTable-style layout.
+   Loads AFTER styles.css / responsive.css so these rules win.
+
+   Design goals:
+   - Stacked player rows, full fluid width (no 1000×700 fixed box)
+   - Each row: [player badge | life | board/hand | zones]
+   - Felt-green accent kept as a subtle background, not a bordered "table"
+   - Card slots use aspect-ratio so they scale without pixel math
+   - Active turn = colored rail on the player row, not a neon glow
+   ============================================================ */
+
+:root {
+    --pt-felt: #1f4430;
+    --pt-felt-deep: #152e20;
+    --pt-row-bg: rgba(255, 255, 255, 0.03);
+    --pt-row-border: rgba(255, 255, 255, 0.06);
+    --pt-row-radius: 14px;
+    --pt-slot-gap: 0.5rem;
+    --pt-slot-radius: 8px;
+    --pt-accent: #d4a54a;
+}
+
+/* Container now behaves like a document, not a fixed table */
+.play-section {
+    display: block !important;
+    margin-bottom: 2rem;
+}
+
+.play-table {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    background: linear-gradient(180deg, var(--pt-felt) 0%, var(--pt-felt-deep) 100%) !important;
+    background-image:
+        radial-gradient(ellipse at top, rgba(255, 255, 255, 0.04), transparent 60%),
+        linear-gradient(180deg, var(--pt-felt) 0%, var(--pt-felt-deep) 100%) !important;
+    border: 1px solid var(--pt-row-border) !important;
+    border-radius: 16px !important;
+    box-shadow: inset 0 2px 20px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.25) !important;
+    padding: clamp(0.75rem, 2vw, 1.5rem);
+    display: grid;
+    gap: clamp(0.6rem, 1.2vw, 1rem);
+    overflow: visible !important;
+}
+
+/* Player rows: fluid full-width strips, wrap on narrow screens */
+.table-area {
+    position: static !important;
+    transform: none !important;
+    width: 100% !important;
+    padding: 1rem 1.25rem !important;
+    background: var(--pt-row-bg) !important;
+    border: 1px solid var(--pt-row-border) !important;
+    border-left: 4px solid transparent !important;
+    border-radius: var(--pt-row-radius) !important;
+    box-shadow: none !important;
+    display: grid;
+    grid-template-columns: minmax(120px, 180px) 1fr minmax(140px, 220px);
+    grid-template-areas:
+        "identity board meta"
+        "identity hand  meta";
+    gap: 0.75rem 1rem;
+    align-items: center;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.table-area.you {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-left-color: var(--primary-color, #5b8def) !important;
+}
+
+.table-area.active-turn {
+    border-left-color: var(--pt-accent) !important;
+    filter: none !important;
+    background: rgba(212, 165, 74, 0.08) !important;
+}
+
+/* Player header lives in the "identity" column */
+.table-area h3 {
+    grid-area: identity;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 0.95rem !important;
+    font-weight: 600;
+    color: #fff !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6) !important;
+    border: none !important;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+/* Board column: the big card strip */
+.board {
+    grid-area: board;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.board > h4,
+.hand::before,
+.library > h4,
+.graveyard > h4 {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.55);
+    margin: 0;
+    font-weight: 600;
+}
+
+.board > h4 { display: none; } /* redundant once label is implicit */
+
+.board-slots {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(58px, 1fr)) !important;
+    gap: var(--pt-slot-gap) !important;
+    width: 100%;
+}
+
+.board-slot,
+.card-slot {
+    width: auto !important;
+    height: auto !important;
+    aspect-ratio: 2.5 / 3.5;
+    border: 1.5px dashed rgba(255, 255, 255, 0.18) !important;
+    border-radius: var(--pt-slot-radius) !important;
+    background: rgba(0, 0, 0, 0.22) !important;
+    transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.board-slot.filled,
+.card-slot:not(.empty) {
+    border-style: solid !important;
+    border-color: rgba(255, 255, 255, 0.35) !important;
+    background: transparent !important;
+}
+
+.board-slot:hover,
+.card-slot:hover {
+    border-color: var(--pt-accent) !important;
+    background: rgba(212, 165, 74, 0.08) !important;
+}
+
+/* Hand row: only rendered for local player */
+.hand {
+    grid-area: hand;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(48px, 1fr)) !important;
+    gap: var(--pt-slot-gap) !important;
+    background: rgba(0, 0, 0, 0.25) !important;
+    border-radius: 10px !important;
+    padding: 0.4rem !important;
+    position: relative;
+}
+
+.hand::before {
+    content: 'Hand';
+    position: absolute;
+    top: -0.9rem;
+    left: 0.25rem;
+}
+
+.hand .card-slot {
+    aspect-ratio: 2.5 / 3.5;
+    min-width: 0;
+}
+
+/* Meta column: library + graveyard stacked */
+.library,
+.graveyard {
+    grid-area: meta;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.library { grid-row: 1; }
+.graveyard { grid-row: 2; }
+
+.library > h4,
+.graveyard > h4 { margin-bottom: 0.1rem; }
+
+.library-count,
+.graveyard-count {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.85);
+    font-variant-numeric: tabular-nums;
+}
+
+/* Cards themselves inherit the slot's box */
+.board-slot > .card,
+.card-slot > .card {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: var(--pt-slot-radius);
+}
+
+/* Life totals bar — cleaner, sits just above the table */
+.life-totals-bar {
+    gap: 0.6rem !important;
+    margin-bottom: 1rem !important;
+}
+
+.life-widget {
+    flex: 1 1 160px !important;
+    min-width: 0 !important;
+    padding: 0.45rem 0.75rem !important;
+    border-radius: 10px !important;
+    background: var(--bg-primary) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+/* -------- Responsive breakpoints -------- */
+
+/* Tablet: meta column collapses into a footer row */
+@media (max-width: 900px) {
+    .table-area {
+        grid-template-columns: minmax(110px, 140px) 1fr !important;
+        grid-template-areas:
+            "identity board"
+            "identity hand"
+            "meta     meta" !important;
+    }
+    .library,
+    .graveyard {
+        grid-area: meta;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-top: 0.4rem;
+        border-top: 1px solid var(--pt-row-border);
+    }
+    .library > h4,
+    .graveyard > h4 { margin: 0 0.5rem 0 0; }
+}
+
+/* Mobile: identity stacks above the board */
+@media (max-width: 600px) {
+    .play-table {
+        padding: 0.6rem !important;
+        border-radius: 12px !important;
+    }
+    .table-area {
+        grid-template-columns: 1fr !important;
+        grid-template-areas:
+            "identity"
+            "board"
+            "hand"
+            "meta" !important;
+        padding: 0.75rem !important;
+        gap: 0.5rem !important;
+    }
+    .table-area h3 { font-size: 0.9rem !important; }
+    .board-slots {
+        grid-template-columns: repeat(auto-fit, minmax(44px, 1fr)) !important;
+    }
+    .life-widget {
+        flex-basis: 120px !important;
+        font-size: 0.8rem;
+    }
+}

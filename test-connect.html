@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket.io Test - SpellTable Pro+</title>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 0 1rem;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        .status {
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        .status.success { background: #d1fae5; color: #065f46; }
+        .status.error { background: #fee2e2; color: #991b1b; }
+        .status.info { background: #dbeafe; color: #1e40af; }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        button:hover { background: #5a67d8; }
+        .log {
+            background: #1f2937;
+            color: #10b981;
+            padding: 1rem;
+            border-radius: 6px;
+            font-family: monospace;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 1rem;
+        }
+        .log-item { margin: 0.25rem 0; }
+        .log-item.error { color: #f87171; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Socket.io Connection Test</h1>
+        <p>Testing Socket.io connection to SpellTable Pro+ server</p>
+
+        <div id="status" class="status info">Checking connection...</div>
+
+        <button onclick="testConnection()">🔄 Test Connection</button>
+        <button onclick="emitEvent()">📤 Emit Event</button>
+
+        <div class="log" id="log"></div>
+    </div>
+
+    <script>
+        let socket;
+        const log = document.getElementById('log');
+        const status = document.getElementById('status');
+
+        function addLog(message, type = 'info') {
+            const item = document.createElement('div');
+            item.className = `log-item ${type}`;
+            item.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            log.insertBefore(item, log.firstChild);
+        }
+
+        function setStatus(message, type = 'info') {
+            status.textContent = message;
+            status.className = `status ${type}`;
+        }
+
+        function testConnection() {
+            if (socket) {
+                socket.disconnect();
+                socket = null;
+                addLog('Disconnected previous socket', 'error');
+            }
+
+            setStatus('Connecting...', 'info');
+            addLog('Attempting to connect to Socket.io server...');
+            addLog('   URL: ' + window.location.origin, 'info');
+            addLog('   Document domain: ' + document.domain, 'info');
+
+            socket = io(window.location.origin, {
+                transports: ['websocket', 'polling'],
+                reconnection: false,
+                timeout: 5000,
+                forceNew: true
+            });
+
+            addLog('   Socket.io options: transports=websocket+polling, timeout=5000ms', 'info');
+
+            socket.on('connect', () => {
+                addLog('✅ Connected to Socket.io server!', 'success');
+                setStatus('✅ Connected successfully!', 'success');
+            });
+
+            socket.on('connect_error', (err) => {
+                addLog(`❌ Connection error: ${err.message}`, 'error');
+                addLog(`   Error details: ${err}`, 'error');
+                setStatus(`❌ Error: ${err.message}`, 'error');
+            });
+
+            socket.on('connect_timeout', () => {
+                addLog('❌ Connection timeout', 'error');
+                setStatus('❌ Connection timeout', 'error');
+            });
+
+            socket.on('disconnect', (reason) => {
+                addLog(`🔌 Disconnected: ${reason}`, 'error');
+                setStatus('🔌 Disconnected', 'error');
+            });
+        }
+
+        function emitEvent() {
+            if (!socket || !socket.connected) {
+                setStatus('Not connected! Click "Test Connection" first.', 'error');
+                addLog('Cannot emit - not connected', 'error');
+                return;
+            }
+
+            addLog('📤 Emitting test event...');
+            socket.emit('test_event', {
+                timestamp: new Date().toISOString(),
+                test: 'Socket.io is working!'
+            });
+
+            addLog('Event emitted successfully!', 'success');
+        }
+
+        // Auto-test on load
+        window.addEventListener('load', () => {
+            setTimeout(testConnection, 500);
+        });
+    </script>
+</body>
+</html>

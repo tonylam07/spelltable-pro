@@ -1,0 +1,67 @@
+/* SpellTable Pro+ - AI Detection Fixes */
+/* Fixes for card detection overflow and layout issues */
+
+.ai-results,
+.ai-analysis {
+    max-height: 280px !important;
+    overflow-y: auto !important;
+    padding: 1rem !important;
+    min-width: 200px;
+}
+
+.ai-results h4,
+.ai-analysis h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.detection-list,
+.analysis-content {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.analysis-item,
+.detection-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.4rem 0.6rem !important;
+    background-color: var(--bg-secondary);
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    margin-bottom: 0.25rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.analysis-label,
+.detection-text {
+    max-width: 70%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.analysis-value {
+    max-width: 50%;
+    text-align: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ai-preview .preview-placeholder {
+    min-height: 200px;
+    max-height: 300px;
+    overflow: hidden;
+}
+
+.ai-preview video {
+    max-width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+}

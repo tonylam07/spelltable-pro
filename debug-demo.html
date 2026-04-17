@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Demo Page Load</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/ai-fixes.css">
+</head>
+<body>
+    <h1>🔍 Demo Page Load Test</h1>
+    <div id="status"></div>
+    
+    <script>
+        const status = document.getElementById('status');
+        
+        // Test 1: Check if we can load the page
+        status.innerHTML += '<p>✅ Page loaded successfully</p>';
+        
+        // Test 2: Try to load CSS
+        const styles = ['css/styles.css', 'css/dark-theme.css', 'css/responsive.css', 'css/ai-fixes.css'];
+        styles.forEach(style => {
+            const link = document.createElement('link');
+            link.href = style;
+            link.rel = 'stylesheet';
+            document.head.appendChild(link);
+            status.innerHTML += `<p>🔗 Loaded: ${style}</p>`;
+        });
+        
+        // Test 3: Check JavaScript files
+        const scripts = ['js/app.js', 'js/video.js', 'js/cards.js', 'js/ai-detection.js', 'js/game-sync.js', 'js/card-detection-enhanced.js', 'js/card-database.js', 'js/fix-initialization.js'];
+        scripts.forEach(script => {
+            const s = document.createElement('script');
+            s.src = script;
+            s.onload = () => status.innerHTML += `<p>✅ Loaded: ${script}</p>`;
+            s.onerror = () => status.innerHTML += `<p>❌ Failed: ${script}</p>`;
+            document.body.appendChild(s);
+        });
+        
+        // Test 4: Check if spellTableApp is available
+        setTimeout(() => {
+            if (window.spellTableApp) {
+                status.innerHTML += '<p>✅ spellTableApp initialized!</p>';
+            } else {
+                status.innerHTML += '<p>⚠️ spellTableApp not found</p>';
+            }
+        }, 3000);
+        
+        // Test 5: Check console errors
+        window.onerror = (msg, url, line) => {
+            status.innerHTML += `<p>❌ Error: ${msg} at ${url}:${line}</p>`;
+        };
+    </script>
+</body>
+</html>

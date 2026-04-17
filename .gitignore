@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+coverage/
+.vercel/
+
+# Env & secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Runtime / logs
+*.log
+npm-debug.log*
+pids/
+*.pid
+*.seed
+
+# Tesseract runtime cache (model is baked into Docker image)
+.tesseract-cache/
+
+# Keep committed: api/data/phash-db.json is a required detection asset

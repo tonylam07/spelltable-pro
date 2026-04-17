@@ -1,0 +1,49 @@
+# Keep the Vercel serverless bundle lean.
+# Detection runs on Railway, so none of this is needed on Vercel.
+
+# Detection service (lives on Railway)
+api/detect-server.js
+api/routes/detect.js
+api/services/cardDetection.js
+api/data/
+scripts/build-phash-db.js
+Dockerfile.detect
+railway.json
+
+# Tests / coverage / editor
+tests/
+coverage/
+.nyc_output/
+test-results/
+node_modules/
+.DS_Store
+*.log
+.vscode/
+.idea/
+*.swp
+
+# Heavy native deps (main server does not require these, but keep the
+# bundler from tracing them into the function payload)
+node_modules/sharp/
+node_modules/@img/
+node_modules/tesseract.js/
+node_modules/tesseract.js-core/
+node_modules/image-hash/
+node_modules/multer/
+
+# Dev / debug pages
+debug*.html
+test-*.html
+test-*.js
+check-server-status.js
+structure-check.bat
+verify-all-files.bat
+start-server.bat
+start-server.ps1
+
+# Docs — none needed at runtime
+*.md
+!api/README.md
+.github/
+.eslintrc.json
+.env*

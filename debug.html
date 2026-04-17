@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpellTable Pro+ - Debug</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: system-ui, sans-serif;
+            background: #f5f5f5;
+            padding: 2rem;
+        }
+        h1 { color: #333; margin-bottom: 1rem; }
+        .info {
+            background: white;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        .info p { margin: 0.5rem 0; }
+        .status { padding: 0.5rem 1rem; display: inline-block; margin: 0.5rem; border-radius: 4px; }
+        .status.ok { background: #d1fae5; color: #065f46; }
+        .status.err { background: #fee2e2; color: #991b1b; }
+        .status.info { background: #dbeafe; color: #1e40af; }
+        .check-item { padding: 0.5rem; border-bottom: 1px solid #eee; }
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+    <h1>🎮 SpellTable Pro+ - Debug Page</h1>
+
+    <div class="info">
+        <h2>Page Information</h2>
+        <p><strong>URL:</strong> <span id="url"></span></p>
+        <p><strong>Hostname:</strong> <span id="hostname"></span></p>
+        <p><strong>Protocol:</strong> <span id="protocol"></span></p>
+        <p><strong>Socket.io CDN:</strong> <span id="socket-cdn"></span></p>
+    </div>
+
+    <div class="info">
+        <h2>Check Elements</h2>
+        <div class="check-item"><span id="lobby-view-status"></span> Lobby View</div>
+        <div class="check-item"><span id="play-section-status"></span> Play Section</div>
+        <div class="check-item"><span id="play-table-status"></span> Play Table</div>
+        <div class="check-item"><span id="socket-status"></span> Socket.io Loaded</div>
+        <div class="check-item"><span id="app-status"></span> App Initialized</div>
+    </div>
+
+    <div class="info">
+        <h2>Console Output</h2>
+        <div id="log" style="background:#1f2937;color:#10b981;padding:1rem;font-family:monospace;"></div>
+    </div>
+
+    <script>
+        // Log page load
+        console.log('=== Page Loaded ===');
+
+        // Update page info
+        document.getElementById('url').textContent = window.location.href;
+        document.getElementById('hostname').textContent = window.location.hostname;
+        document.getElementById('protocol').textContent = window.location.protocol;
+
+        // Check if Socket.io CDN loaded
+        if (typeof io !== 'undefined') {
+            document.getElementById('socket-cdn').innerHTML = '<span class="status ok">✅ Loaded</span>';
+            console.log('✅ Socket.io CDN loaded successfully');
+        } else {
+            document.getElementById('socket-cdn').innerHTML = '<span class="status err">❌ Not loaded</span>';
+            console.error('❌ Socket.io CDN failed to load');
+        }
+
+        // Check elements
+        const lobby = document.getElementById('lobby-view');
+        const play = document.getElementById('play-section');
+        const table = document.getElementById('play-table');
+
+        if (lobby) {
+            document.getElementById('lobby-view-status').innerHTML =
+                (lobby.classList.contains('hidden') ? '❌ Hidden' : '✅ Visible') + ' (element exists)';
+            console.log('✅ Lobby view element:', lobby.classList.contains('hidden') ? 'hidden' : 'visible');
+        } else {
+            document.getElementById('lobby-view-status').innerHTML = '<span class="status err">❌ Not found</span>';
+            console.error('❌ Lobby view element not found');
+        }
+
+        if (play) {
+            document.getElementById('play-section-status').innerHTML =
+                (play.classList.contains('hidden') ? '❌ Hidden' : '✅ Visible') + ' (element exists)';
+            console.log('✅ Play section element:', play.classList.contains('hidden') ? 'hidden' : 'visible');
+        } else {
+            document.getElementById('play-section-status').innerHTML = '<span class="status err">❌ Not found</span>';
+            console.error('❌ Play section element not found');
+        }
+
+        if (table) {
+            document.getElementById('play-table-status').innerHTML = '✅ Element exists';
+            console.log('✅ Play table element exists');
+        } else {
+            document.getElementById('play-table-status').innerHTML = '<span class="status err">❌ Not found</span>';
+            console.error('❌ Play table element not found');
+        }
+
+        // Check if app.js loaded
+        if (typeof window.spellTableApp !== 'undefined') {
+            document.getElementById('app-status').innerHTML = '<span class="status ok">✅ Initialized</span>';
+            console.log('✅ SpellTableApp initialized');
+        } else {
+            document.getElementById('app-status').innerHTML = '<span class="status err">❌ Not loaded</span>';
+            console.error('❌ SpellTableApp not initialized');
+        }
+
+        // Log all scripts loaded
+        const scripts = document.getElementsByTagName('script');
+        console.log('Scripts loaded:', Array.from(scripts).map(s => s.src || 'inline').slice(0, 10));
+    </script>
+</body>
+</html>
