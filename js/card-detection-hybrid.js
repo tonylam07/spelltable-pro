@@ -37,7 +37,10 @@
     const API_DETECT_LITE    = API_DETECT + '/lite';
 
     const CARD_ASPECT        = 2.5 / 3.5;
-    const ASPECT_TOL         = 0.25;
+    // Raised from 0.25 → allows up to ~45° perspective tilt before rejection.
+    // At 45° the card height projects to cos(45°)≈0.71× so apparent aspect ≈ 1.0,
+    // which is |1.0 − 0.714| = 0.286 — still within 0.40.
+    const ASPECT_TOL         = 0.40;
     const MIN_AREA_FRAC      = 0.01;
     const MAX_AREA_FRAC      = 0.60;
 
@@ -183,33 +186,47 @@
     }
 
     /**
-     * detectCardQuads — optimised for 1080p webcam input.
+     * detectCardQuads — robust against angled cards and busy backgrounds.
      *
-     * Strategy:
-     *   1. Downscale source to ≤ PROC_MAX_W (720px) for OpenCV edge detection.
-     *      720p has ~4× fewer pixels than 1080p → Canny + findContours run ~4× faster.
-     *   2. Scale the detected corner coordinates back to original resolution.
-     *   3. Perspective-warp from the ORIGINAL full-res frame so the card crop
-     *      stays sharp — important for pHash accuracy.
+     * Preprocessing improvements:
+     *   - Bilateral filter (d=5): edge-preserving smoothing — blurs background
+     *     texture while keeping the sharp rectangular card outline intact.
+     *   - Adaptive Canny: thresholds derived from the frame's own brightness
+     *     instead of hardcoded 50/150.  Works in dark rooms, bright daylight,
+     *     and mixed lighting without manual tuning.
+     *   - Morphological closing (dilate 5×5 → erode 3×3): seals gaps that
+     *     appear in the card outline when background noise breaks edge continuity.
+     *
+     * Angle improvements:
+     *   - Convex hull computed before polygon approximation: smooths noisy
+     *     contours so approxPolyDP converges to 4 corners more reliably.
+     *   - Multiple epsilon values tried ([0.02, 0.04, 0.06]): low epsilon for
+     *     upright cards, higher for angled ones where more simplification is needed.
+     *   - minAreaRect fallback: when approxPolyDP still can't produce exactly
+     *     4 corners, minAreaRect always returns a rotation-invariant rectangle.
+     *     Aspect ratio validated directly from rect.size for accuracy.
+     *   - ASPECT_TOL raised to 0.40: accepts up to ~45° perspective tilt.
+     *
+     * Scale strategy unchanged: OpenCV runs at ≤720px wide; corners scaled back
+     * to original resolution; perspective warp from full-res frame for quality.
      */
     async function detectCardQuads(source) {
-        const cv  = await loadOpenCV();
+        const cv    = await loadOpenCV();
         const origW = source.videoWidth  || source.width;
         const origH = source.videoHeight || source.height;
         if (!origW || !origH) return [];
 
-        // ── Step 1: downscaled canvas for OpenCV ──────────────────────────────
         const scale  = Math.min(1, PROC_MAX_W / origW);
         const procW  = Math.round(origW * scale);
         const procH  = Math.round(origH * scale);
 
+        // Downscaled canvas for fast OpenCV processing
         const procCanvas = document.createElement('canvas');
         procCanvas.width  = procW;
         procCanvas.height = procH;
         procCanvas.getContext('2d').drawImage(source, 0, 0, procW, procH);
 
-        // ── Step 2: original-res canvas for high-quality warp ─────────────────
-        // Only created once per frame — shared across all quads found.
+        // Original-res canvas — perspective warp reads from here for sharp crops
         const origCanvas = document.createElement('canvas');
         origCanvas.width  = origW;
         origCanvas.height = origH;
@@ -218,17 +235,40 @@
         const procMat   = cv.imread(procCanvas);
         const origMat   = cv.imread(origCanvas);
         const gray      = new cv.Mat();
-        const blur      = new cv.Mat();
+        const filtered  = new cv.Mat();
         const edges     = new cv.Mat();
+        const closed    = new cv.Mat();
         const contours  = new cv.MatVector();
         const hierarchy = new cv.Mat();
 
         try {
             cv.cvtColor(procMat, gray, cv.COLOR_RGBA2GRAY);
-            cv.GaussianBlur(gray, blur, new cv.Size(5, 5), 0);
-            cv.Canny(blur, edges, 50, 150);
-            cv.dilate(edges, edges, cv.Mat.ones(3, 3, cv.CV_8U));
-            cv.findContours(edges, contours, hierarchy, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE);
+
+            // ── Bilateral filter ────────────────────────────────────────────────
+            // Smooths background texture while preserving the hard rectangular
+            // edges of cards.  d=5 is ~3ms at 720p — acceptable overhead.
+            cv.bilateralFilter(gray, filtered, 5, 75, 75);
+
+            // ── Adaptive Canny ──────────────────────────────────────────────────
+            // Derive thresholds from the frame's median brightness so the detector
+            // self-adjusts to lighting conditions (dark room, sunny window, etc.).
+            const mean  = cv.mean(filtered)[0];
+            const sigma = 0.33;
+            const lo    = Math.max(10,  Math.round((1 - sigma) * mean));
+            const hi    = Math.max(30,  Math.round((1 + sigma) * mean));
+            cv.Canny(filtered, edges, lo, hi);
+
+            // ── Morphological closing ───────────────────────────────────────────
+            // Dilate (5×5) to bridge edge gaps, then erode (3×3) to restore
+            // roughly original edge thickness.  Net effect: closed card outline
+            // even when background clutter breaks continuity at corners.
+            const k5 = cv.Mat.ones(5, 5, cv.CV_8U);
+            const k3 = cv.Mat.ones(3, 3, cv.CV_8U);
+            cv.dilate(edges, closed, k5);
+            cv.erode(closed, closed, k3);
+            k5.delete(); k3.delete();
+
+            cv.findContours(closed, contours, hierarchy, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE);
 
             const procArea = procW * procH;
             const results  = [];
@@ -239,56 +279,100 @@
                 if (area < procArea * MIN_AREA_FRAC || area > procArea * MAX_AREA_FRAC) {
                     cnt.delete(); continue;
                 }
-                const peri   = cv.arcLength(cnt, true);
-                const approx = new cv.Mat();
-                cv.approxPolyDP(cnt, approx, 0.02 * peri, true);
 
-                if (approx.rows === 4) {
-                    // Scale corners back to original resolution
-                    const pts = [];
-                    for (let j = 0; j < 4; j++) {
-                        pts.push({
-                            x: Math.round(approx.data32S[j * 2]     / scale),
-                            y: Math.round(approx.data32S[j * 2 + 1] / scale),
-                        });
+                // ── Convex hull ─────────────────────────────────────────────────
+                // Working on the convex hull rather than raw contour smooths out
+                // jagged edges from background noise, so approxPolyDP converges
+                // to a clean 4-corner polygon more reliably.
+                const hull = new cv.Mat();
+                cv.convexHull(cnt, hull, false, true);
+                cnt.delete();
+
+                // ── Polygon approximation (multiple epsilons) ───────────────────
+                // Try progressively looser approximation until we get 4 corners.
+                // Low epsilon (0.02) works for upright near-perpendicular cards;
+                // higher values (0.04–0.06) collapse extra corners that appear
+                // when a card is tilted and perspective distorts the outline.
+                let procPts  = null;
+                const hullPeri = cv.arcLength(hull, true);
+                const approx   = new cv.Mat();
+
+                for (const eps of [0.02, 0.04, 0.06]) {
+                    cv.approxPolyDP(hull, approx, eps * hullPeri, true);
+                    if (approx.rows === 4) {
+                        procPts = [];
+                        for (let j = 0; j < 4; j++) {
+                            procPts.push({ x: approx.data32S[j * 2], y: approx.data32S[j * 2 + 1] });
+                        }
+                        break;
                     }
-                    const [tl, tr, br, bl] = orderCorners(pts);
-                    const maxW  = Math.max(Math.hypot(br.x - bl.x, br.y - bl.y),
-                                           Math.hypot(tr.x - tl.x, tr.y - tl.y));
-                    const maxH  = Math.max(Math.hypot(tr.x - br.x, tr.y - br.y),
-                                           Math.hypot(tl.x - bl.x, tl.y - bl.y));
-                    const aspect = Math.min(maxW, maxH) / Math.max(maxW, maxH);
-
-                    if (Math.abs(aspect - CARD_ASPECT) > ASPECT_TOL) {
-                        approx.delete(); cnt.delete(); continue;
-                    }
-
-                    // Warp from original-res mat for maximum crop quality
-                    const dstW   = 488; const dstH = 680;
-                    const srcTri = cv.matFromArray(4, 1, cv.CV_32FC2,
-                        [tl.x, tl.y, tr.x, tr.y, br.x, br.y, bl.x, bl.y]);
-                    const dstTri = cv.matFromArray(4, 1, cv.CV_32FC2,
-                        [0, 0, dstW, 0, dstW, dstH, 0, dstH]);
-                    const M      = cv.getPerspectiveTransform(srcTri, dstTri);
-                    const warped = new cv.Mat();
-                    cv.warpPerspective(origMat, warped, M, new cv.Size(dstW, dstH));
-
-                    const out = document.createElement('canvas');
-                    out.width = dstW; out.height = dstH;
-                    cv.imshow(out, warped);
-
-                    // Corners reported in original resolution for overlay drawing
-                    results.push({ corners: [tl, tr, br, bl], canvas: out,
-                                   cropDataUrl: out.toDataURL('image/jpeg', 0.85) });
-
-                    srcTri.delete(); dstTri.delete(); M.delete(); warped.delete();
                 }
-                approx.delete(); cnt.delete();
+                approx.delete();
+
+                // ── minAreaRect fallback ────────────────────────────────────────
+                // When polygon approx can't simplify to 4 corners (common for
+                // cards at steep angles or partially occluded), the minimum
+                // bounding rectangle always gives exactly 4 corners and its
+                // size.width / size.height gives a reliable aspect ratio.
+                if (!procPts) {
+                    const rect   = cv.minAreaRect(hull);
+                    const minDim = Math.min(rect.size.width, rect.size.height);
+                    const maxDim = Math.max(rect.size.width, rect.size.height);
+                    if (maxDim < 1 || Math.abs((minDim / maxDim) - CARD_ASPECT) > ASPECT_TOL) {
+                        hull.delete(); continue;
+                    }
+                    const pts2f = new cv.Mat();
+                    cv.boxPoints(rect, pts2f);
+                    procPts = [];
+                    for (let j = 0; j < 4; j++) {
+                        procPts.push({ x: pts2f.data32F[j * 2], y: pts2f.data32F[j * 2 + 1] });
+                    }
+                    pts2f.delete();
+                } else {
+                    // Aspect check for approxPolyDP path — still in proc coords
+                    const [tl, tr, br, bl] = orderCorners(procPts);
+                    const pW = Math.max(Math.hypot(br.x - bl.x, br.y - bl.y),
+                                        Math.hypot(tr.x - tl.x, tr.y - tl.y));
+                    const pH = Math.max(Math.hypot(tr.x - br.x, tr.y - br.y),
+                                        Math.hypot(tl.x - bl.x, tl.y - bl.y));
+                    if (pW < 1 || pH < 1 ||
+                        Math.abs(Math.min(pW, pH) / Math.max(pW, pH) - CARD_ASPECT) > ASPECT_TOL) {
+                        hull.delete(); continue;
+                    }
+                }
+                hull.delete();
+
+                // ── Scale corners to original resolution ────────────────────────
+                const origPts = procPts.map(p => ({
+                    x: Math.round(p.x / scale),
+                    y: Math.round(p.y / scale),
+                }));
+                const [tl, tr, br, bl] = orderCorners(origPts);
+
+                // ── Perspective warp from full-res frame ────────────────────────
+                const dstW   = 488;
+                const dstH   = 680;
+                const srcTri = cv.matFromArray(4, 1, cv.CV_32FC2,
+                    [tl.x, tl.y, tr.x, tr.y, br.x, br.y, bl.x, bl.y]);
+                const dstTri = cv.matFromArray(4, 1, cv.CV_32FC2,
+                    [0, 0, dstW, 0, dstW, dstH, 0, dstH]);
+                const M      = cv.getPerspectiveTransform(srcTri, dstTri);
+                const warped = new cv.Mat();
+                cv.warpPerspective(origMat, warped, M, new cv.Size(dstW, dstH));
+
+                const out = document.createElement('canvas');
+                out.width = dstW; out.height = dstH;
+                cv.imshow(out, warped);
+
+                results.push({ corners: [tl, tr, br, bl], canvas: out,
+                               cropDataUrl: out.toDataURL('image/jpeg', 0.85) });
+
+                srcTri.delete(); dstTri.delete(); M.delete(); warped.delete();
             }
             return results;
         } finally {
             procMat.delete(); origMat.delete();
-            gray.delete(); blur.delete(); edges.delete();
+            gray.delete(); filtered.delete(); edges.delete(); closed.delete();
             contours.delete(); hierarchy.delete();
         }
     }
