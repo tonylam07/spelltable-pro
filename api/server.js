@@ -19,6 +19,7 @@ const cardRoutes = require('./routes/cards');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
 const friendRoutes = require('./routes/friends');
+const deckRoutes = require('./routes/decks');
 // Detect route is lazy-loaded below; it pulls heavy native deps (sharp,
 // tesseract, image-hash) that exceed Vercel's serverless bundle limit.
 // Skip it when deployed to Vercel — detection runs on Railway/Fly.
@@ -72,6 +73,7 @@ app.use('/api/games', gameRoutes);
 app.use('/api/cards', cardRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/friends', friendRoutes);
+app.use('/api/decks', deckRoutes);
 
 // Only mount detection locally or on the dedicated detect-server host.
 // SKIP_DETECT=true is set for Vercel frontend+light-API deploys.

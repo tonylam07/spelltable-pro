@@ -3,10 +3,22 @@
  * Builds a perceptual-hash database from Scryfall default-cards bulk data.
  * Output: api/data/phash-db.json  — { [phash]: { name, set, scryfall_id } }
  *
- * Usage:  npm run build:phash -- [--limit=1000] [--set=neo]
+ * Usage:  npm run build:phash -- [options]
  *
- * Note: Full Scryfall English catalog is ~30k cards. Default limit=2000
- * keeps this fast for dev; remove --limit for a full build.
+ * Options:
+ *   --limit=N           Max cards to hash (default: 2000; omit for full run)
+ *   --set=<setCode>     Filter to a single set (e.g. --set=neo)
+ *   --format=<fmt>      Filter by legality: standard | pioneer | modern |
+ *                       legacy | vintage | pauper | commander
+ *                       (cards where legalities[fmt] === 'legal')
+ *
+ * Presets:
+ *   quick    --set=neo --limit=200         ~5 min, good for demos
+ *   standard --format=standard             ~40 min, ~2k cards, real play
+ *   modern   --format=modern --limit=8000  ~4-6 hrs
+ *
+ * Note: Full English catalog = ~30k cards = 8-16 hrs. Not recommended unless overnight.
+ * Scryfall rate-limit: 75ms between requests — don't remove the delay.
  */
 
 const fs = require('fs');
@@ -24,7 +36,14 @@ function arg(name, def) {
 }
 
 const LIMIT = parseInt(arg('limit', '2000'), 10);
-const SET_FILTER = arg('set', null);
+const SET_FILTER    = arg('set', null);
+const FORMAT_FILTER = arg('format', null);
+
+const VALID_FORMATS = ['standard', 'pioneer', 'modern', 'legacy', 'vintage', 'pauper', 'commander'];
+if (FORMAT_FILTER && !VALID_FORMATS.includes(FORMAT_FILTER)) {
+  console.error(`✗ Unknown format "${FORMAT_FILTER}". Valid: ${VALID_FORMATS.join(', ')}`);
+  process.exit(1);
+}
 
 function hashUrl(url) {
   return new Promise((resolve, reject) => {
@@ -45,9 +64,16 @@ async function main() {
   console.log(`→ ${cards.length} cards in bulk`);
 
   let pool = cards.filter(c => c.lang === 'en' && c.image_uris && c.image_uris.normal);
-  if (SET_FILTER) pool = pool.filter(c => c.set === SET_FILTER);
+  if (SET_FILTER)    pool = pool.filter(c => c.set === SET_FILTER);
+  if (FORMAT_FILTER) pool = pool.filter(c => c.legalities?.[FORMAT_FILTER] === 'legal');
   pool = pool.slice(0, LIMIT);
-  console.log(`→ Hashing ${pool.length} cards (limit=${LIMIT}${SET_FILTER ? `, set=${SET_FILTER}` : ''})`);
+
+  const filters = [
+    SET_FILTER    ? `set=${SET_FILTER}`       : null,
+    FORMAT_FILTER ? `format=${FORMAT_FILTER}` : null,
+    `limit=${LIMIT}`
+  ].filter(Boolean).join(', ');
+  console.log(`→ Hashing ${pool.length} cards (${filters})`);
 
   const db = {};
   let done = 0;
