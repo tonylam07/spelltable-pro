@@ -255,6 +255,28 @@ if (io) {
             }
         });
 
+        // ── WebRTC signaling relay ─────────────────────────────────────────
+        // The server never inspects SDP — it just routes to the target socket.
+        // Each payload must include { to: <socketId> } so we can route it.
+
+        socket.on('webrtc_offer', ({ to, offer }) => {
+            if (to && offer) {
+                io.to(to).emit('webrtc_offer', { from: socket.id, offer });
+            }
+        });
+
+        socket.on('webrtc_answer', ({ to, answer }) => {
+            if (to && answer) {
+                io.to(to).emit('webrtc_answer', { from: socket.id, answer });
+            }
+        });
+
+        socket.on('webrtc_ice_candidate', ({ to, candidate }) => {
+            if (to && candidate) {
+                io.to(to).emit('webrtc_ice_candidate', { from: socket.id, candidate });
+            }
+        });
+
         socket.on('disconnect', () => {
             console.log(`❌ Client disconnected: ${socket.id}`);
             const client = connectedClients.get(socket.id);

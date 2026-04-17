@@ -78,8 +78,21 @@ class GameSync {
             this.socket.on('turn_change', (data) => this.onTurnChange(data));
             this.socket.on('life_change', (data) => this.onLifeChange(data));
             this.socket.on('card_added', (data) => this.onCardAdded(data));
-            this.socket.on('player_joined', (data) => this.onPlayerJoined(data));
-            this.socket.on('player_left', (data) => this.onPlayerLeft(data));
+            this.socket.on('player_joined', (data) => {
+                this.onPlayerJoined(data);
+                // We are an existing player — initiate WebRTC call to the newcomer.
+                // video.js handles the case where localStream isn't ready yet.
+                if (data.socketId && data.socketId !== this.socket.id) {
+                    window.videoManager?.initiateCall(data.socketId);
+                }
+            });
+            this.socket.on('player_left', (data) => {
+                this.onPlayerLeft(data);
+                // Tear down the peer connection and restore their video slot.
+                if (data.socketId) {
+                    window.videoManager?.handlePeerLeft(data.socketId);
+                }
+            });
             this.socket.on('presence_update', (data) => this.onPresenceUpdate(data));
             this.socket.on('card_move', (data) => this.onCardMove(data));
 
