@@ -216,6 +216,45 @@ if (io) {
             }
         });
 
+        // Commander damage tracking
+        // Payload: { toPlayerId, fromPlayerId, delta }
+        // delta is +N or -N; server clamps to 0 minimum when persisting.
+        socket.on('commander_damage', async (data) => {
+            const client = connectedClients.get(socket.id);
+            if (!client) return;
+
+            const { toPlayerId, fromPlayerId, delta } = data;
+            if (!toPlayerId || !fromPlayerId || typeof delta !== 'number') return;
+
+            // Broadcast immediately so all clients update optimistically
+            io.to(`game:${client.gameId}`).emit('commander_damage_update', {
+                toPlayerId,
+                fromPlayerId,
+                delta,
+                timestamp: new Date().toISOString()
+            });
+
+            // Persist to DB
+            try {
+                const { Game } = require('./models');
+                const game = await Game.findOne({ gameId: client.gameId });
+                if (game) {
+                    const player = game.players.find(p => p.playerId === String(toPlayerId));
+                    if (player) {
+                        const current = player.commanderDamage.get(String(fromPlayerId)) || 0;
+                        player.commanderDamage.set(
+                            String(fromPlayerId),
+                            Math.max(0, current + delta)
+                        );
+                        game.markModified('players');
+                        await game.save();
+                    }
+                }
+            } catch (err) {
+                console.error('commander_damage persist error:', err.message);
+            }
+        });
+
         socket.on('disconnect', () => {
             console.log(`❌ Client disconnected: ${socket.id}`);
             const client = connectedClients.get(socket.id);

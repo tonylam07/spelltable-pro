@@ -20,6 +20,9 @@ const PlayerSchema = new mongoose.Schema({
     libraryCount: { type: Number, default: 60 },
     graveyardCount: { type: Number, default: 0 },
     boardSlots: [CardSlotSchema],
+    // commander damage: { [fromPlayerId]: totalDamage }
+    // Tracked per-player so each player sees exactly 21+ as a lethal threshold.
+    commanderDamage: { type: Map, of: Number, default: () => new Map() },
     metadata: { type: mongoose.Schema.Types.Mixed, default: {} }
 });
 

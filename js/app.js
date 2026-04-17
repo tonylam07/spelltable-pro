@@ -76,6 +76,8 @@ class SpellTableApp {
         this.initPlayers(count);
         this.renderDynamicUI();
         this.saveGameState();
+        // Notify commander damage tracker so it can reset its matrix
+        document.dispatchEvent(new CustomEvent('players-changed'));
         console.log(`👥 Player count set to ${count}`);
     }
 
