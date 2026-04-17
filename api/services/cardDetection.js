@@ -123,11 +123,15 @@ async function lookupByName(name) {
 }
 
 /**
+ * identifyCard — phash only, no OCR.
+ * Fast path (~10ms): normalise → hash → DB scan.
+ * Returns the nearest match regardless of confidence so the caller
+ * can decide whether to trust it or escalate to OCR.
+ *
  * @param {Buffer} imageBuffer  PNG/JPEG of a single isolated card
- * @returns {Promise<{name, set, scryfall_id, confidence, method}|null>}
+ * @returns {Promise<{name, set, scryfall_id, confidence, method, phash_distance}|null>}
  */
 async function identifyCard(imageBuffer) {
-  // Normalize to PNG at card aspect ratio for hashing consistency
   const normalized = await sharp(imageBuffer)
     .resize(488, 680, { fit: 'fill' })
     .png()
@@ -136,13 +140,45 @@ async function identifyCard(imageBuffer) {
   const hash = await hashBuffer(normalized);
   const { distance, entry } = nearestByPhash(hash);
 
-  if (entry && distance <= PHASH_GREAT_MATCH) {
+  if (!entry) return null;
+
+  if (distance <= PHASH_GREAT_MATCH) {
+    return { ...entry, confidence: 1 - distance / 64, method: 'phash', phash_distance: distance };
+  }
+  if (distance <= PHASH_MAX_DISTANCE) {
     return {
       ...entry,
-      confidence: 1 - distance / 64,
-      method: 'phash',
+      confidence: 0.5 + (PHASH_MAX_DISTANCE - distance) / (2 * PHASH_MAX_DISTANCE),
+      method: 'phash-loose',
       phash_distance: distance
     };
+  }
+
+  // Outside all thresholds — return anyway with low confidence so caller can
+  // choose to escalate or discard.
+  return { ...entry, confidence: 0.2, method: 'phash-weak', phash_distance: distance };
+}
+
+/**
+ * identifyCardWithOcr — phash first, then OCR fallback if confidence low.
+ * Slow path (up to ~4s on OCR). Only call this when the user explicitly
+ * requests it or when phash confidence is below threshold.
+ *
+ * @param {Buffer} imageBuffer
+ * @returns {Promise<{name, set, scryfall_id, confidence, method}|null>}
+ */
+async function identifyCardWithOcr(imageBuffer) {
+  const normalized = await sharp(imageBuffer)
+    .resize(488, 680, { fit: 'fill' })
+    .png()
+    .toBuffer();
+
+  const hash = await hashBuffer(normalized);
+  const { distance, entry } = nearestByPhash(hash);
+
+  // High-confidence phash match — no OCR needed
+  if (entry && distance <= PHASH_GREAT_MATCH) {
+    return { ...entry, confidence: 1 - distance / 64, method: 'phash', phash_distance: distance };
   }
 
   // OCR fallback
@@ -170,7 +206,7 @@ async function identifyCard(imageBuffer) {
     }
   }
 
-  // Last resort: return best phash guess if within loose threshold
+  // Last resort: loose phash guess
   if (entry && distance <= PHASH_MAX_DISTANCE) {
     return {
       ...entry,
@@ -191,4 +227,11 @@ async function identifyCards(buffers) {
   })));
 }
 
-module.exports = { identifyCard, identifyCards, loadPhashDb };
+async function identifyCardsWithOcr(buffers) {
+  return Promise.all(buffers.map(b => identifyCardWithOcr(b).catch(err => {
+    console.error('identifyCardWithOcr error:', err.message);
+    return null;
+  })));
+}
+
+module.exports = { identifyCard, identifyCardWithOcr, identifyCards, identifyCardsWithOcr, loadPhashDb };
